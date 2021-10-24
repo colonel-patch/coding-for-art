@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Coding fo Art</title>
+
+	<meta charset="UTF-8">
+	<meta name="keywords" content="HTML, CSS, JavaScript">
+
+	<meta name="description" content="Coding for Art">
+
+	<meta name="author" content="Paul Heaton">
+
+	<!-- <meta http-equiv="refresh" content="60">  -->
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- <link relative="stylesheet" href="coding-for-art.css"/> -->
+	
+	<style>
+		.heading_1{
+			color:navy;
+		}
+
+		.heading_2{
+			color:blue;
+		}
+
+		.heading_3{
+			color:navy;
+		}
+
+		.normal{
+
+		}
+
+		.program{
+			background-color:lightgray;
+			padding:16px;
+			border=10px;
+		}
+		
+		.exercise{
+			background-color:ivory;
+			padding:0px;
+
+		}
+
+
+		.solution{
+			background-color:ivory;
+			padding:0px;
+			
+		}
+
+		.exercise_summary{
+			background-color:lightgreen;
+			padding:16px;
+			border=1px;
+		}
+
+		.details_inner{
+			border=1px;
+
+		}
+		.solution_summary{
+			background-color:salmon;
+			padding:16px;
+			border=1px;
+		}
+	</style>
+</head>
+
+<body>
+	
+<h1 class="heading_1">Coding for Art</h1>
+<div id="content">
+		
+		<h2 class="heading_1">Lesson 6 - Connecting Objects</h2>
+		
+		<p>In this lesson we look at how to move a collection of objects as one in a simple animation.<br/>
+		
+
+		<h2 class="heading_1">Objectives</h2>
+		<p>By  the end of the lesson the student should be able to:<br/>
+			&nbsp; Understand how to move a series of objects and how to uses the properties of one object to control another.<br/>
+			&nbsp; Understand how to break out of a loop if a certain condition is met.<br/>
+		</p>
+
+		<h3 class="heading2"> <font color="#0000A0">The program</font></h3>
+		<iframe src="https://www.glowscript.org/#/user/pmh/folder/Public/program/connecting-objects" title="Figure 1:Orbital Motion" align="right" style='width:320px;height:300px'>Figure 2</iframe> 
+		
+		<p class="program" >
+		scene.width = 800<br/>
+		scene.height = 600<br/>
+		scene.range=10<br/>
+		scene.title="Figure 1: Connecting Objects"<br/><br/>
+
+		center=vector(0,0,0)<br/>
+		arrow_origin=vector(-2,-2,2)<br/>
+		box_width=2<br/>
+		box_height=2<br/>
+		box_depth=2<br/>
+		box_size=vector(box_width,box_height,box_depth)<br/><br/>
+
+		bluebox = box(pos=center, size=box_size, color=color.blue)<br/>
+		yellowbox = box(pos=vector(bluebox.pos.x+box_width,0,0), size=bluebox.size,color=color.yellow)<br/>
+		redbox = box(pos=vector(bluebox.pos.x+(box_width*2),0,0), size=bluebox.size, color=color.red)<br/>
+		greenbox = box(pos=vector(yellowbox.pos.x,yellowbox.pos.y+box_height,0,0), size=bluebox.size, color=color.green)<br/><br/>
+
+		pointerx = arrow(pos=arrow_origin, axis=vector(5,0,0), shaftwidth=0.5, color=color.red)<br/>
+		pointery = arrow(pos=arrow_origin, axis=vector(0,5,0), shaftwidth=0.5, color=color.yellow)<br/>
+		pointerz = arrow(pos=arrow_origin, axis=vector(0,0,-5), shaftwidth=0.5, color=color.green)<br/>
+		Lx = label(pos=pointerx.axis, text='X Axis', xoffset=0, yoffset=-2, space=0.1,  height=16, border=4, font='sans')<br/>
+		Ly = label(pos=pointery.axis, text='Y Axis', xoffset=-2, yoffset=-2, space=0.1,  height=16, border=4, font='sans')<br/>
+		Lz = label(pos=pointerz.axis, text='Z Axis', xoffset=-2, yoffset=-2, space=0.1,  height=16, border=4, font='sans')<br/><br/>
+
+		dx=0.01<br/>
+		while True:<br/>
+		&nbsp;rate(100)<br/>
+		&nbsp;bluebox.pos.x=bluebox.pos.x+dx<br/>
+		&nbsp;yellowbox.pos.x=bluebox.pos.x+box_width<br/>
+		&nbsp;redbox.pos.x=yellowbox.pos.x+box_width<br/>
+		&nbsp;greenbox.pos.x=bluebox.pos.x+box_width<br/>
+		&nbsp;if greenbox.pos.x>scene.range:<br/>
+		&nbsp;&nbsp;break<br/>
+		</p>
+	
+        <h3 class="heading2"> <font color="#0000A0">Things to note</font></h3>
+        <p class="normal">Objects are connected together using common properties<br>
+			When working with many objects it is often helpful to pre-define some points and sizes<br/>
+			which can make positioning easier than dealing with vectors directly.
+			Notice the final 'if' statement which stops the animation when the box exceeds the scene range<br/>
+			by using the 'break' statement. This statement can be used in any loop structure.
+		</p>
+		
+
+		<p>&nbsp;</p>
+	<p>&nbsp;</p>
+		<details class="exercise">	
+			 <summary class="exercise_summary">Exercise 1</summary>
+				<p>
+					Copy the program below and do the following:<br/>
+					Add a magenta box <em>behind</em> the yellow box.<br/>
+					Animate the magenta box so that it travels with the others in the 'while' loop
+				</p>
+
+		</details> 
+
+
+		<p>
+				<details class="solution">	
+					 <summary class="solution_summary">Solution to Exercise 1</summary>
+						<p class="normal">
+							scene.width = 800<br/>
+							scene.height = 600<br/>
+							scene.range=10<br/>
+							scene.title="Figure 1: Orbital Motion"<br/>
+
+							center=vector(0,0,0)<br/>
+							arrow_origin=vector(-2,-2,2)<br/>
+							box_width=2<br/>
+							box_height=2<br/>
+							box_depth=2<br/>
+							box_size=vector(box_width,box_height,box_depth)<br/><br/>
+
+							bluebox = box(pos=center, size=box_size, color=color.blue)<br/>
+							yellowbox = box(pos=vector(bluebox.pos.x+box_width,0,0), size=bluebox.size,color=color.yellow)<br/>
+							redbox = box(pos=vector(bluebox.pos.x+(box_width*2),0,0), size=bluebox.size, color=color.red)<br/>
+							greenbox = box(pos=vector(yellowbox.pos.x,yellowbox.pos.y+box_height,0), size=bluebox.size, color=color.green)<br/>
+							magentabox = box(pos=vector(yellowbox.pos.x,yellowbox.pos.y,yellowbox.pos.z-box_width), size=bluebox.size, color=color.magenta)<br/><br/>
+
+							pointerx = arrow(pos=arrow_origin, axis=vector(5,0,0), shaftwidth=0.5, color=color.red)<br/>
+							pointery = arrow(pos=arrow_origin, axis=vector(0,5,0), shaftwidth=0.5, color=color.yellow)<br/>
+							pointerz = arrow(pos=arrow_origin, axis=vector(0,0,-5), shaftwidth=0.5, color=color.green)<br/>
+							Lx = label(pos=pointerx.axis, text='X Axis', xoffset=0, yoffset=-2, space=0.1, height=16, border=4, font='sans')<br/>
+							Ly = label(pos=pointery.axis, text='Y Axis', xoffset=-2, yoffset=-2, space=0.1, height=16, border=4, font='sans')<br/>
+							Lz = label(pos=pointerz.axis, text='Z Axis', xoffset=-2, yoffset=-2, space=0.1, height=16, border=4, font='sans')<br/><br/>
+
+
+							dx=0.01<br/>
+							while True:<br/>
+							&nbsp;rate(100)<br/>
+							&nbsp;bluebox.pos.x=bluebox.pos.x+dx<br/>
+							&nbsp;yellowbox.pos.x=bluebox.pos.x+box_width<br/>
+							&nbsp;redbox.pos.x=yellowbox.pos.x+box_width<br/>
+							&nbsp;greenbox.pos.x=yellowbox.pos.x<br/>
+							&nbsp;magentabox.pos.x=yellowbox.pos.x<br/>
+							&nbsp;if greenbox.pos.x>scene.range:<br/>
+							&nbsp;&nbsp;break<br/>
+					</p>
+					
+				</details>
+			
+			
+-      <h3 class="heading2"><font color="#0000A0">Conclusion</font></h3>
+        <p class="normal">You should now be able to:<br/>
+			&nbsp; Understand how to move a collection of objects together in a simple animation<br/>
+			and position objects together in 3-D space.<br/>
+			Understand how to break out of a loop when a condition is met.
+		</p> 
+	
+<button onclick="javascript:document.location='file:///home/paul/coding-for-art/coding-for-art5.html'">Previous Tutorial</button>
+<button onclick="javascript:document.location='file:///home/paul/coding-for-art/coding-for-art7.html'">Next Tutorial</button>
+</div>
+
+</body>
+</html>

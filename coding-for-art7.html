@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Coding fo Art</title>
+
+	<meta charset="UTF-8">
+	<meta name="keywords" content="HTML, CSS, JavaScript">
+
+	<meta name="description" content="Coding for Art">
+
+	<meta name="author" content="Paul Heaton">
+
+	<!-- <meta http-equiv="refresh" content="60">  -->
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- <link relative="stylesheet" href="coding-for-art.css"/> -->
+	
+	<style>
+		.heading_1{
+			color:navy;
+		}
+
+		.heading_2{
+			color:blue;
+		}
+
+		.heading_3{
+			color:navy;
+		}
+
+		.normal{
+
+		}
+
+		.program{
+			background-color:lightgray;
+			padding:16px;
+			border=10px;
+		}
+		
+		.exercise{
+			background-color:ivory;
+			padding:0px;
+
+		}
+
+
+		.solution{
+			background-color:ivory;
+			padding:0px;
+			
+		}
+
+		.exercise_summary{
+			background-color:lightgreen;
+			padding:16px;
+			border=1px;
+		}
+
+		.details_inner{
+			border=1px;
+
+		}
+		.solution_summary{
+			background-color:salmon;
+			padding:16px;
+			border=1px;
+		}
+	</style>
+</head>
+
+<body>
+	
+<h1 class="heading_1">Coding for Art</h1>
+<div id="content">
+		
+		<h2 class="heading_1">Lesson 7 - Compound Objects</h2>
+		
+		<p>In this lesson we look at another way to connect objects so that they become a new object.<br/>
+			These objects are called <em>compound</em>> objects
+		</p>
+		
+
+		<h2 class="heading_1">Objectives</h2>
+		<p>By  the end of the lesson the student should be able to:<br/>
+			&nbsp; Understand how create a collection of objects and bind them together into  a compound object.<br/>
+			which can be manipulated as a single object.
+			Rotate the compound object.and have something happen when a certain angle is reached<br/>
+			Use the 'sleep' function to momentarily pause program execution.
+		</p>
+
+		<h3 class="heading2"> <font color="#0000A0">The program</font></h3>
+		<iframe src="https://glowscript.org/#/user/pmh/folder/Public/program/compound-objects" title="Figure 1: Compound-objects" align="right" style='width:320px;height:300px'>Figure 2</iframe> 
+
+		<p class="program" >
+		scene.width = 800<br/>
+		scene.height = 600<br/>
+		scene.range=10<br/>
+		scene.title="Figure 1: Compound objects"<br/><br/>
+
+
+		hammer_origin=vector(0,0,0)<br/>
+		hammer_base=vector(-2.5,0,0)<br/>
+		anvil_pos=vector(2.5,-2.5,0)<br/><br/>
+
+		handle = box(pos=hammer_origin, size=vector(1,5,1), color=vector(0.72,0.42,0))<br/><br/>
+
+		head = box( size=vector(3,1,1), pos=vector(0,2,0), color=color.gray(.6) )<br/><br/>
+
+		hammer = compound([handle, head])<br/>
+		hammer.axis = vector(0,-1,0)<br/><br/>
+
+		anvil=sphere(pos=anvil_pos,radius=1 )<br/><br/>
+		
+		direction=-1<br/>
+		da=pi/180<br/>
+
+		</p>
+	
+        <h3 class="heading2"> <font color="#0000A0">Things to note</font></h3>
+	<p class="normal">The code which does the work in this program is the line <i>hammer = compound([handle, head])</i><br/>
+		This joins the two obects as one. The objects  'head' and 'handle' are placed in a list ie between the square brackets [ ].<br/>
+		The next line rotates the hammer in the '-y' plane, along the hammer length, so that it appears side on to the user.
+		</p>
+		
+
+		<p>&nbsp;</p>
+		<p>&nbsp;</p>
+		<details class="exercise">	
+			 <summary class="exercise_summary">Exercise 1</summary>
+				<p>
+					Copy the program below and do the following:<br/>
+					Rotate the hammer so that it strikes when it 'strikes' the white sphere, the sphere flashes red momentarily.<br/>
+					<i>Hint: VPython has a sleep() function which mometarily pauses the program .eg sleep(1) will pause the program for a second</i>
+					Use the following to rotate the hammer:<br/>
+					hammer.rotate(angle=direction*da, axis=vector(0,0,1), origin=hammer_base)<br/>
+					Remember angles are measured anti-clockwise from zero degrees in the +x direction and you will need to remember the direction in a variable.
+				</p>
+
+		</details> 
+
+
+		<details class="solution">	
+			 <summary class="solution_summary">Solution to Exercise 1</summary>
+				<p class="normal">
+					scene.width = 800<br/>
+					scene.height = 600<br/>
+					scene.range=10<br/>
+					scene.title="Figure 1: Compound Objects"<br/><br/>
+
+					hammer_origin=vector(0,0,0)<br/>
+					hammer_base=vector(-2.5,0,0)<br/>
+					anvil_pos=vector(2.5,-2.5,0)<br/><br/>
+
+					handle = box(pos=hammer_origin, size=vector(1,5,1), color=vector(0.72,0.42,0))<br/><br/>
+
+					head = box( size=vector(3,1,1), pos=vector(0,2,0), color=color.gray(.6) )<br/><br/>
+
+					hammer = compound([handle, head])<br/>
+					hammer.axis = vector(0,-1,0)<br/>
+					direction=-1<br/>
+					da=pi/180<br/>
+					anvil=sphere(pos=anvil_pos,radius=1 )<br/><br/>
+
+					while True:<br/>
+					&nbsp;rate(100)<br/>
+					&nbsp;if hammer.pos.y<0 or hammer.pos.y>hammer.size.y:<br/>
+					&nbsp;&nbsp;direction=-1*direction<br/><br/>
+
+					&nbsp;if hammer.pos.y<0 and direction>0:<br/>
+					&nbsp;&nbsp;anvil.color=color.red<br/>
+					&nbsp;&nbsp;sleep(0.1)<br/>
+					&nbsp;else:<br/>
+					&nbsp;&nbsp;anvil.color=color.white<br/><br/>
+
+					&nbsp;hammer.rotate(angle=direction*da, axis=vector(0,0,1), origin=hammer_base)<br/>
+				</p>
+				<h3 class="heading2"> <font color="#0000A0">Things to note</font></h3>
+				<p class="normal">We animate the hammer  with a 'while True; statement<br/>
+					We create a global variable 'direction' to indicate if the hammer is travelling clockwise or anti-clockwise.<br/>
+					Each time the hammer y coordinates reach zero at +- 0, the direction is switched, so when the hammer is travelling clockwise and the position of y is zero,<br/>
+					then the 'if hammer.pos.y<0 and direction>0' is true and we know we have hit the sphere.<br/>
+					The colour of the sphere is changed to red and the program then 'sleeps' for 1/10 of a second to allow the user to see the 'strike'.
+				</p>
+			</details>
+			
+			
+-      <h3 class="heading2"><font color="#0000A0">Conclusion</font></h3>
+        <p class="normal">You should now be able to:<br/>
+			&nbsp; Understand how create a compound object and manipulate it a a single entity.<br/>
+			Rotate the compound object.and have something happen when a certain angle is reached<br/>
+			Use the 'sleep' function to momentarily pause program execution.
+		</p> 
+	
+<button onclick="javascript:document.location='file:///home/paul/coding-for-art/coding-for-art6.html'">Previous Tutorial</button>
+<button onclick="javascript:document.location='file:///home/paul/coding-for-art/coding-for-art8.html'">Next Tutorial</button>
+</div>
+
+</body>
+</html>

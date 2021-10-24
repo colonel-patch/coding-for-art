@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Coding fo Art</title>
+
+	<meta charset="UTF-8">
+	<meta name="keywords" content="HTML, CSS, JavaScript">
+
+	<meta name="description" content="Coding for Art">
+
+	<meta name="author" content="Paul Heaton">
+
+	<!-- <meta http-equiv="refresh" content="60">  -->
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- <link relative="stylesheet" href="coding-for-art.css"/> -->
+	
+	<style>
+		.heading_1{
+			color:navy;
+		}
+
+		.heading_2{
+			color:blue;
+		}
+
+		.heading_3{
+			color:navy;
+		}
+
+		.normal{
+
+		}
+
+		.program{
+			background-color:lightgray;
+			padding:16px;
+			border=10px;
+		}
+		
+		.exercise{
+			background-color:ivory;
+			padding:0px;
+
+		}
+
+
+		.solution{
+			background-color:ivory;
+			padding:0px;
+			
+		}
+
+		.exercise_summary{
+			background-color:lightgreen;
+			padding:16px;
+			border=1px;
+		}
+
+		.details_inner{
+			border=1px;
+
+		}
+		.solution_summary{
+			background-color:salmon;
+			padding:16px;
+			border=1px;
+		}
+	</style>
+</head>
+
+<body>
+	
+<h1 class="heading_1">Coding for Art</h1>
+<div id="content">
+		
+		<h2 class="heading_1">Lesson 4 - Creating Motion </h2>
+		
+		<p>In this lesson we look at how to move an object.<br/>
+		
+
+		<h2 class="heading_1">Objectives</h2>
+		<p>By  the end of the lesson the student should be able to:<br/>
+			&nbsp; Understand how to move an object across the screen.<br/>
+			&nbsp; Understand how to detect obstacles and take some action, eg reflection.<br/>
+			&nbsp; Understand how to run an infinite loop and control it with the'rate()' function.<br/>
+			&nbsp; Add an attribute to an object "on-the-fly" and use it in calculations.<br/>
+		</p>
+		<iframe src="https://glowscript.org/#/user/pmh/folder/Public/program/creating-motion" title="Figure 1:Creating Motion" align="right" style='width:320px;height:300px'>Figure 2</iframe> 
+
+		<p class="program">
+		scene.width = 800<br/>
+		scene.height = 600<br/><br/>
+
+		right_side = 4.0<br/>
+		left_side = -4.0<br/>
+		thickness = 0.3<br/>
+		wallw = 2*right_side - thickness<br/>
+		wallh = 2*right_side + thickness<br/><br/>
+
+		wallR = box (pos=vector( right_side, 0, 0), size=vector(thickness, wallw, wallh),  color = color.red)<br/>
+		wallL = box (pos=vector(left_side, 0, 0), size=vector(thickness, wallw, wallh),  color = color.red)<br/>
+
+		ball = sphere (color = color.green, radius = 0.4)<br/>
+		ball.ballpos = vector (1, 0, 0) #here 'ballpos' is added to the ball object as an attribute with only an 'x' component<br/>
+
+		side = right_side - thickness*0.5 - ball.radius # since all the sides are the same size we can use 'size' to represent all the walls.<br/><br/><br/><br/>
+
+		dt = 0.01<br/> #a small increment in position<br/><br/>
+		while True:<br/>
+		&nbsp;  rate(200)<br/> #set the program to update 200 times per second
+		&nbsp;  ball.pos = ball.pos + ball.ballpos*dt<br/>
+		&nbsp;  if not (side > ball.pos.x > -side):<br/>
+		&nbsp;&nbsp;   ball.ballpos.x = -ball.ballpos.x #if ball hits wall reverse direction<br/>
+		</p>
+	
+        <h3 class="heading2"> <font color="#0000A0">Things to note</font></h3>
+        <p class="normal"> Motion is acheived by incrementing the position vector of the ball.<br>
+			The ball has had added an attribute which controls the velocity and direction.<br/>
+			In the example, the only component is in the x direction. <br/>
+			The program uses an infinite loop -"while True:". Since True is always true it will repeat forever.<br/>
+			When using infinite loops, it is important to use the 'rate()' function to limit the number of frames per second the program runs at.<br/>
+			Using the 'rate() function also ensures the speed appears the same on different computers with different capabilities.
+		</p>
+		
+
+		<p>&nbsp;</p>
+		<p>&nbsp;</p>
+	
+		<details class="exercise">	
+			 <summary class="exercise_summary">Exercise 1</summary>
+				<p>
+					Copy the program above and do the following:<br/>
+					Make the ball bounce off of the sides, top and bottom of the box.<br/>
+					Add add trail to the ball by adding a 'maketrail attribute,<br/>
+					with a length=30, make_trail=True, retain=30.<br/>
+					Add a mass to the ball. Hint: use the same technique as adding the ball_pos attribute.<br/>
+				</p>
+
+		</details> 
+
+
+		<p>
+				<details class="solution">	
+					 <summary class="solution_summary">Solution to Exercise 1</summary>
+						<p class="normal">
+				scene.width = 800<br/>
+				scene.height = 600<br/>
+
+				right_side = 4.0<br/>
+				left_side = -4.0<br/>
+				top_side = 4.0<br/>
+				bottom_side = -4.0<br/>
+				thickness = 0.3<br/>
+				wallw = 2*right_side - thickness<br/>
+				wallh = 2*right_side + thickness<br/><br/>
+
+				wallR = box (pos=vector( right_side, 0, 0), size=vector(thickness, wallw, wallh),  color = color.red) # left wall<br/>
+				wallL = box (pos=vector(left_side, 0, 0), size=vector(thickness, wallw, wallh),  color = color.red) # right wall<br/>
+				wallB = box (pos=vector(0, top_side, 0), size=vector(wallw, thickness, wallw),  color = color.blue) # bottom wall<br/>
+				wallT = box (pos=vector(0,  bottom_side, 0), size=vector(wallw, thickness, wallw),  color = color.blue) # top wall<br/><br/>
+				
+				ball = sphere (color = color.green, radius = 0.4, make_trail=True, retain=30) # leave a 30 segments trail<br/>
+				ball.ballpos = vector (1, 0.5, 0) # a 'y' component is added to the position vector<br/><br/>
+
+				side = right_side - thickness*0.5 - ball.radius # since all the sides are the same size we can use 'size' to represent all the walls.<br/><br/>
+				
+				ball.mass=20000<br/>
+				print("ball mass=" + ball.mass)<br/><br/>
+							
+				dt = 0.01 #a small increment in position<br/>
+				while True:<br/>
+				&nbsp;  rate(200) #set the program to update 200 times per second<br/>
+				&nbsp;  ball.pos = ball.pos + ball.ballpos*dt<br/>
+				&nbsp;  if not (side > ball.pos.x > -side):<br/>
+				&nbsp;&nbsp;   ball.ballpos.x = -ball.ballpos.x #if ball hits wall reverse direction<br/>
+				&nbsp;  if not (side > ball.pos.y > -side):<br/>
+				&nbsp;&nbsp;   ball.ballpos.y = -ball.ballpos.y #if ball hits wall reverse direction<br/>
+
+
+						</p>
+					
+				</details>
+			
+			
+-      <h3 class="heading2"><font color="#0000A0">Conclusion</font></h3>
+        <p class="normal">You should now be able to:<br/>
+					&nbsp; Understand how to move an object across the screen.<br/>
+			&nbsp; Understand how to detect obstacles and take some action, eg reflection.<br/>
+			&nbsp; Understand how to run an infinite loop and control it with the'rate()' function.<br/>
+			&nbsp; Add an attribute to an object "on-the-fly" and use it in calculations.<br/>
+			&nbsp; Add a "tail" to an object to show it's path using the make_trail attribute.<br/>
+
+		</p> 
+	
+<button onclick="javascript:document.location='file:///home/paul/coding-for-art/coding-for-art3.html'">Previous Tutorial</button>
+<button onclick="javascript:document.location='file:///home/paul/coding-for-art/coding-for-art5.html'">Next Tutorial</button>
+</div>
+
+</body>
+</html>

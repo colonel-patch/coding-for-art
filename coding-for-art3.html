@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Coding fo Art</title>
+
+	<meta charset="UTF-8">
+	<meta name="keywords" content="HTML, CSS, JavaScript">
+
+	<meta name="description" content="Coding for Art">
+
+	<meta name="author" content="Paul Heaton">
+
+	<!-- <meta http-equiv="refresh" content="60">  -->
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- <link relative="stylesheet" href="coding-for-art.css"/> -->
+	
+	<style>
+		.heading_1{
+			color:navy;
+		}
+
+		.heading_2{
+			color:blue;
+		}
+
+		.heading_3{
+			color:navy;
+		}
+
+		.normal{
+
+		}
+
+		.program{
+			background-color:lightgray;
+			padding:16px;
+			border=10px;
+		}
+		
+		.exercise{
+			background-color:ivory;
+			padding:0px;
+
+		}
+
+
+		.solution{
+			background-color:ivory;
+			padding:0px;
+			
+		}
+
+		.exercise_summary{
+			background-color:lightgreen;
+			padding:16px;
+			border=1px;
+		}
+
+		.details_inner{
+			border=1px;
+
+		}
+		.solution_summary{
+			background-color:salmon;
+			padding:16px;
+			border=1px;
+		}
+	</style>
+</head>
+
+<body>
+	
+<h1 class="heading_1">Coding for Art</h1>
+<div id="content">
+		<iframe src="https://www.glowscript.org/#/user/pmh/folder/Public/program/creating-objects" title="Figure 1:Creating Objects" align="right" style='width:320px;height:300px'>Figure 2</iframe> 
+		<h2 class="heading_1">Lesson 3 - Creating Objects </h2>
+		<p>Vpython offers a range of shapes to the user.<br/>
+		Here we look at the some of the commonly shapes the user can create.<br/>
+		Use the Vpython web site as a reference for creating your own, but many have attributes in common.<p>
+
+		<h2 class="heading_1">Objectives</h2>
+		<p>By  the end of the lesson the student should be able to:.<br/>
+			&nbsp; Understand how to create a variety of shapes and position them on the screen in the correct orientation.<br/>
+			&nbsp; Understand how to specify a colour to an object using a vector.<br/>
+		</p>
+	
+		<h3 class="heading2"> Colours in VPython.</h3>
+		<p class="normal"> You have seen so far, VPython has predefined colours, which are accessed from the colour object in the form <em>color=color.red</em>.<br/>
+			Vpython also allow one to specify a colour as a vector, where the triplet of values represent the Red,Green,Blue levels, in that order, ie vector(R,G,B).<br/>
+			All values must be between 0 and 1. For example, a dark yellow would be vector(0.5,0.5,0)
+			</p>
+		<p class="normal"> In figure 1 an arrow is added to help 'see' the viewing angle.</p>
+		<p>&nbsp;</p>
+		<p>&nbsp;</p>
+
+		<p class="program">
+		scene.width = 800<br/>
+		scene.height = 600<br/>
+		scene.range = 14<br/>
+		scene.center = vector(0,-6,0)<br/>
+		scene.userspin = True<br/>
+		scene.userzoom = True<br/>
+		scene.background = color.gray(0.5)<br/>
+		scene.ambient = color.gray(0.4)<br/>
+		scene.title="Lesson 3 - Creating Objects"<br/><br/><br/>
+		aword= text(text='My green text \n :)',pos=vector(-6,6,0), align='center', color=color.green)<br/>
+		acylinder = cylinder(pos=vector(-8,0,0), radius=1.1, axis=vector(0,1.5,0), color=color.yellow)<br/>
+		acone = cone(pos=vector(-4,0,0), axis=vector(0,3,0), radius=1, color=color.blue)<br/>
+		anarrow = arrow(pos=vector(-2,0,0), axis=vector(0,5,0), shaftwidth=1, color=color.cyan)<br/>
+		apyramid = pyramid(pos=vector(2,0,0), size=vector(5,3,3), axis=vector(0,5,0), color=color.magenta)<br/>
+		aring = ring(pos=vector(8,2,0), axis=vector(0,1,0), radius=2.5, thickness=0.1, color=color.black)<br/>
+		ahelix = helix(pos=vector(-12,-6,0), axis=vector(0,5,0), radius=0.5, color=color.white)<br/>
+		acurve =curve(vector(-8,-4,0), vector(-8,-6,0), vector(-6,-8,0),pos=vector(-6,-4,0),color=color.purple, radius=0.5)<br/>
+		abox=box(pos=vector(0,-4,0), size=vec(2,2,2), color=color.red)<br/>
+		anellipsoid = ellipsoid(pos=vector(6,-4,0), length=5, height=4, width=3, color=color.orange)<br/>
+		alabel=label(pos=vector(-4,-3,0), text='a Label', color=color.gray(0.7), xoffset=30, yoffset=-40, space=0.2, height=12, border=4, font='sans')
+
+		</p>
+		
+	
+		<details class="exercise">	
+			 <summary class="exercise_summary">Exercise 1</summary>
+				<p>
+					Copy the program below and do the following:<br/>
+					Move the box forward two units<br>
+					Move the Sphere backwards two uniits<br/>
+					Move the helix to the right of the orange ellipsoid leaving a 1 unit gap<br/>
+					Move the green text up 2 units.<br/>
+					A coppery color is achieved using red=1, green=0.7 and blue=0.2.<br/>
+					Create a copper coloured Sphere(radius=2), 2 units above the black ring, and in line with the new green text position.<br/>
+				</p>
+
+		</details> 
+
+
+
+				<details class="solution">	
+					 <summary class="solution_summary">Solution to Exercise 1</summary>
+						<p class="normal">
+							scene.width = 800<br/>
+							scene.height = 600<br/>
+							scene.range = 14<br/>
+							scene.center = vector(0,-6,0)<br/>
+							scene.userspin = True<br/>
+							scene.userzoom = True<br/>
+							scene.background = color.gray(0.5)<br/>
+							scene.ambient = color.gray(0.4)<br/>
+							scene.title="Lesson 3 - Creating Objects"<br/><br/><br/>
+							acylinder = cylinder(pos=vector(-8,0,0), radius=1.1, axis=vector(0,1.5,0), color=color.yellow)<br/>
+							acone = cone(pos=vector(-4,0,0), axis=vector(0,3,0), radius=1, color=color.blue)<br/>
+							anarrow = arrow(pos=vector(-2,0,0), axis=vector(0,5,0), shaftwidth=1, color=color.cyan)<br/>
+							apyramid = pyramid(pos=vector(2,0,0), size=vector(5,3,3), axis=vector(0,5,0), color=color.magenta)<br/>
+							aring = ring(pos=vector(8,2,0), axis=vector(0,1,0), radius=2.5, thickness=0.1, color=color.black)<br/>
+							ahelix = helix(pos=vector(-12,-6,0), axis=vector(0,5,0), radius=0.5, color=color.white)<br/>
+							acurve =curve(vector(-8,-4,0), vector(-8,-6,0), vector(-6,-8,0),pos=vector(-6,-4,0),color=color.purple, radius=0.5)<br/>
+							abox=box(pos=vector(0,-4,4), size=vec(2,2,2), color=color.red) #Move the red box forward 4 units:<br>
+							anellipsoid = ellipsoid(pos=vector(6,-4,-4), length=5, height=4, width=3, color=color.orange) #Move the orange elipsoid backwards 4 units:<br/>
+							alabel=label(pos=vector(-4,-3,0), text='a Label', color=color.gray(0.7), xoffset=30, yoffset=-40, space=0.2, height=12, border=4, font='sans')<br/>
+
+							new_helix_pos=vector(anellipsoid.pos.x+anellipsoid.length+1,-6,0) # Move the helix to the right of the orange ellipsoid leaving a 1 unit gap:<br/>
+							ahelix = helix(pos=new_helix_pos , axis=vector(0,5,0), radius=0.5, color=color.white)<br/>			
+
+							aword= text(text='My green text \n :)',pos=vector(-6,8,0), align='center', color=color.green) # Move the green text up 2 units:.<br/>
+							#A coppery color is achieved using red=1, green=0.7 and blue=0.2.<br/>
+							#Create a copper coloured Sphere(radius=2), 2 units above the black ring, and in line with the new green text position:<br/>
+							asphere=sphere(pos=vector(aring.pos.x, aword.pos.y, aring.pos.z), radius=2, color=vector(1,0.7,0.2) ) 
+						</p>
+					
+				</details>
+-
+		<h3 class="heading2"> Things to note</h3>
+        <p class="normal"> All the shapes lie in the x-axis.Rotate the scene around to verify this.<br>
+			Shapes such as the Sphere and Cylinder have a radius attribute to specify the size in the units of the scene.<br/><br/>
+			
+			The Curve shape takes a list of point position vectors and join them together as one object.<br/><br/>
+			
+			All shapes are drawn by default along the x-axis: this means that if you wish the orientation to be different, as with the Pyramid for example,<br/>
+			
+			one needs to specify the axis along which the shape follows.<br><br/>
+			
+			One can also specify length. width, and height separately for some shapes instead of using the size vector.<br/><br/>
+			Here the ellipsoid is defined as:<br/>
+			ellipsoid(pos=vector(6,-4,0), length=5, height=4, width=3, color=color.orange)<br/>
+			which is equivalent to<br/>
+			
+			ellipsoid(pos=vector(6,-4,0), size=vector(5,4,3), color=color.orange)<br/><br/>
+			
+			The Label object takes some additional attributes to allow a line marker to a point.<br/>
+			The label's position starts at 'pos', then the marker line is drawn in pixels, to the label box,<br/>
+			at an angle determined by 'xoffset' and 'yoffset'<br/>
+			The attribute  'space' is a radius around the label's pos where the marker line is not drawn. See figure 2<br/><br/>
+			
+			Note: 'pixels' relate to  the scene size, and not the object. When you zoom in or out or rotate the scene the label stays in it's position.<br/>
+			Thus, if the marker line 'touches' the edge of an object by using the space attribute, when one zooms the marker line no longer 'touches' the object.<br/><br/>
+			</p>
+			<details class="exercise">	
+			 <summary class="exercise_summary">Exercise 1</summary>			
+			Below is the code for figure 2.<br/>
+			Copy the code into a new program and see the effect of zooming and rotating.<br/>
+			Then try changing the width of the screen to 600 to see the effect on the label. Note how gap does not keep track of the objects' edge when zooming.
+
+		</details>
+		
+		<h3 class="heading_2"> &nbsp;</h3>
+		<iframe src="https://www.glowscript.org/#/user/pmh/folder/Public/program/label-demo" title="Figure 2:label-demo" align="right" style='width:320px;height:300px'>Figure 2</iframe> 
+
+		<p class="program">
+			GlowScript 3.1 VPython<br/>
+			scene.width=300<br/>
+			scene.height=300<br/>
+			scene.range=6<br/>
+			scene.caption="Figure 2 - Label demo"<br/><br/>
+
+			center=vector(0,0,0)<br/>
+			box_size=vector(0.5,0.5,0.5)<br/><br/>
+
+			abox=box(pos=center,size=box_size, color=color.red)<br/><br/>
+
+			label(pos=center,text='xoffset=scene.width/4,\n yoffset=0,\n space=20',xoffset=scene.width/3, yoffset=0, space=20, font='sans')<br/>
+		</p>
+		<h3 class="heading_2"> &nbsp;</h3>
+
+			
+-      <h3 class="heading_2">Conclusion</h3>
+        <p class="normal">You should now be able to:<br/>
+		Understand more about the 3-D space inside scene and change the scene settings to give a desired effect.<br/>
+		Modify the output window to present a program with a title and some information about the program in the caption.
+		</p> 
+	
+<button onclick="javascript:document.location='file:///home/paul/coding-for-art/coding-for-art2.html'">Previous Tutorial</button>
+<button onclick="javascript:document.location='file:///home/paul/coding-for-art/coding-for-art4.html'">Next Tutorial</button>
+</div>
+
+</body>
+</html>

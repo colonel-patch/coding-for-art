@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Coding fo Art Lesson 1</title>
+
+	<meta charset="UTF-8">
+	<meta name="keywords" content="HTML, CSS, JavaScript">
+
+	<meta name="description" content="Coding for Art">
+
+	<meta name="author" content="Paul Heaton">
+
+	<!-- <meta http-equiv="refresh" content="60">  -->
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- <link relative="stylesheet" href="coding-for-art.css"/> -->
+	
+	<style>
+		.heading_1{
+			color:navy;
+		}
+
+		.heading_2{
+			color:blue;
+		}
+
+		.heading_3{
+			color:navy;
+		}
+
+		.normal{
+
+		}
+
+		.program{
+			background-color:lightgray;
+			padding:16px;
+			border=10px;
+		}
+		
+		.exercise{
+			background-color:ivory;
+			padding:0px;
+
+		}
+
+
+		.solution{
+			background-color:ivory;
+			padding:0px;
+			
+		}
+
+		.exercise_summary{
+			background-color:lightgreen;
+			padding:16px;
+			border=1px;
+		}
+
+		.details_inner{
+			border=1px;
+
+		}
+		.solution_summary{
+			background-color:salmon;
+			padding:16px;
+			border=1px;
+		}
+	</style>
+</head>
+
+<body>
+	
+<h1 class="heading_1">Coding for Art</h1>
+<div id="content">
+		<h2 class="heading_1"> Lesson 1:</h2>
+		<p>Coding for Art is a course designed to allow students to build objects in 3-D space for art projects where a digital representation is required<p>
+
+		<h2 class="heading_1">Objectives</h2>
+		<p>By  the end of the lesson the student should be able to:.<br/>
+			&nbsp; Log into the Glowscript website and create a basic program to show an object.<br/>
+			&nbsp; Have an understanding of 3-D space and how vectors are used to change VPython object attribute properties.<br/>
+			&nbsp; Have an uderstaning of the basic syntax of VPython code to make decisions based on data in a variable.<br/>
+			&nbsp; When errors occur, be able to interpret the error and correct the code.<br/>
+		<br />
+		</p>
+
+		<h2 class="heading_1">Description</h2>
+		<p>The course uses the programming suite offered by <a href="https://vpython.org/" target="blank">VPython</a>, which is based on the popular programming language Python, with which it can be blended.
+		<br />VPython has been chosen as it has an easy syntax and set up, and performs many complex tasks "under the hood" allowing the user to concentrate on the objects being built.
+		</p>
+		<p>VPython now has a branch called Glowscript, which allows it to be used in a web page, and the course uses the site <a href="glowscript.org" target="blank"> glowscript.org</a>
+		>br> The site offers <a href="https://glowscript.org/#/user/GlowScriptDemos/folder/Examples/" target="blank">many examples</a>, written by Bruce Sherwood , the creator of VPython, and this course uses modified and simplified versions of some of the programs to aid understandimg.</p>
+
+		<h2 class="heading_1">Prerequisites:</h2>
+		<p>No prior programming experience is assumed, but some basic maths and coordinate geometry would be advantageous.</p>
+
+		<h2 class="heading_1">Set up</h2>
+		<p>The course uses <a href="glowscript.org" target="blank">glowscript.org</a> (a web portal for VPython) and an account needs to be signed up for.using your gmail address<br />
+		Once signed up it is easy to write programs, view, and share with others.</p>
+
+
+		<h2 class="heading_1">Terminology</h2>
+		<p>Object: A collection of data which represents something</p>
+		<p>Constructor: A collection of attributes which instruct object creation</p>
+		<p> Attribute: A property of an object which holds a value.</p>
+		<p>Function: a routine which performs and operation on data and can return the result.</p>
+		<p>Variable: A user defined data type which can hold the results of functions or preset value.</p>
+		<p>Method: A function contained within an object which can alter values of the object</p>
+		<p>Vector: A set of three values which together denote magnitude and direction.</p>
+
+
+
+
+        
+        <h1 class="heading_1">Using VPython</h1>
+      <div>
+        <h3 class="heading_1"> I. Getting started</h3>
+        <p class="normal">To write a VPython program in the browser, sign in at <a href='glowscript.org'.target='_blank'>glowscript.org</a>.<br />
+			You will need a google account to sign in<br />
+			Click the link to your programs<br />
+			The web page shows your folders in tabs along the top and files within the main page body.<br />
+			The "Icons" link toggles between the 'Icon' view (default) and the 'List' view. Click to suit your needs.<br />
+			The 'PRIVATE' link toggles your programs between private and publicly available. You can also set permissions on an entire folder.<br />
+			Clicking the link 'Create New Program' will open a blank edit page will open with a header line that says something like &quot;GlowScript 3.0 VPython&quot;. <br />
+			Always start typing your program on the second line. Erasing the 'GlowScript 3.0 VPython' header will prevent your program from working.<br />
+			Click &quot;Run&quot; to try out your program.</p>
+      </div>
+      <div>
+        <h3 class="heading_2"> The Graphics window</h3>
+        <p class="normal"> When using VPython the graphics window (or canvas ), shows objects in 3D space.</p>
+		  <iframe src="https://www.glowscript.org/#/user/pmh/folder/Public/program/thescene"  title="description" align="right" style='width:320px;height:300px'>Figure 1</iframe>
+        <p class="normal"> (0,0,0) is in the center of the canvas. The +x axis runs to the right, the +y axis runs up, and the +z axis points out of the screen, toward you.<br>
+		  Figure 1 shows the 3D axis viewed at about 45 degrees.</p>
+        <p class="normal"> x, y, and z are measured in whatever units you choose; 
+          
+          the canvas is automatically scaled appropriately.</p>
+      </div>
+      <div>
+        <h3 class="heading_2"> The Output window</h3>
+        <p class="normal">The Output window is everything below the graphic window.<br />
+			The output of any -print- statements you execute in your program goes to  a scrolling text window underneath the graphics window.<br />
+			You can use this window to print values of variables, print lists, print messages, etc.</p>
+
+        <h3 class="heading_2"> The Code window</h3>
+        <p class="normal">In order to be able to run a program the code window needs at least one object to be visible.<br />
+			The simplest program, perhaps is to display a box:
+			
+		  <details class="exercise" >
+			  <summary class="exercise_summary">Exercise 1</summary>
+					  <p class="program">Type <i> box() in your program editor</i><br />
+					(click &quot;Run this program&quot; or press Ctrl-1 or Ctrl-2), you will see 
+					  a canvas containing a white box the center of the screen. </p>
+		</details> 
+			
+      <h3 class="heading_2">Viewing the scene</h3>
+        <p class="normal">
+		 In the canvas, click and drag with the right mouse 
+          button (or hold down the Ctrl key while dragging). Drag left or right, and 
+          you rotate around the scene. To rotate around a horizontal axis, drag up 
+          or down. Click and drag up or down with the 
+          middle mouse button to move closer to the scene or farther away <br />
+			(on a 2-button mouse, hold down the left and right buttons and drag;<br/>
+			on a 1-button mouse, hold down the Alt key). To pan left/right and up/down, drag with the shift key held down.<br />
+		  The scene can also alter the user view programatically in code</p>
+
+
+
+
+        <h3 class="heading2"> Objects, names, and attributes</h3>
+        <p class="normal"> The graphical objects you create, such as spheres, boxes, 
+          
+          and curves, continue to exist for the duration of your program, and the 
+          
+          VPython 3D graphics module will continue to display them, wherever they are. 
+          
+          You must give each object a name (such as <span class="attribute">whitebox</span> in the example above) if you 
+          
+          wish to refer to it again later in your program. For example <span class="attribute">whitebox=box()</span>
+		  </p>
+	</div>
+		<iframe src="https://www.glowscript.org/#/user/pmh/folder/Public/program/simplest-program" title="Figure 2:whitebox" align="right" style='width:320px;height:300px'></iframe> 
+
+ 			<p class="normal">Figure 2 shows the simplest program: whitebox=box()<br/>
+			where we ask VPython to create a box shape and assign it to the <i>variable</i> whitebox.<br/>
+			</p>
+ 
+  			<p class="normal">All objects have attributes: <br/>
+        	properties like <span class="attribute">ball.pos</span> (the position of the sphere), <br/>
+			<span class="attribute">ball.color</span>, and <span class="attribute">ball.</span><br/>
+			<span class="attribute">radius</span> or other size parameter.<br/>
+			If you change an attribute of an object, such as its position or color, VPython will automatically display the object in its 
+          	new location, or with its new color.</p>
+			 <p class="normal">You can set the values of attributes in the &quot;constructor&quot;
+				 (the code between the two brackets used to create the object, as in box()),
+			and you can also modify attributes later:</p>
+        <p class="normal"> myball.radius = 2.2</p>
+        <p class="normal"> In addition to the built-in set of attributes, you can 
+            create new attributes to objects <i>on the fly</i>. <br/>
+			For example, you might create a sphere named <span class="attribute">moon</span>; 
+            in addition to its radius and location, you might give it attributes such 
+          as mass (<span class="attribute">moon.mass</span>) and momentum (<span class="attribute">moon.momentum</span>).
+			</p>
+
+			<details class="exercise">
+			<summary class="exercise_summary">Exercise 2</summary>
+			<p class="details_inner">Figure 2 shows the simplest program: whitebox=box().<br>
+					  Use  the mouse buttons to move around the "whitebox" program in figure 2.<br/>
+				Note you are seeing a white square initially because you are looking face on in the -Z direction.
+			</p>
+		</details> 
+			 
+
+
+
+		  <h3 class="heading2">Errors </h3>
+			<iframe src="https://www.glowscript.org/#/user/pmh/folder/Public/program/errors" title="description" align="right" style='width:320px;height:300px'>Figure 3</iframe> 
+        
+		  <p class="normal">When coding, we all make mistakes. There are two types: syntactical and programatical.<br/>
+				If you make a syntax mistake, such as spere(radius=12), VPython will tell you with an error message and try to indicate the line where the error occurred<br/>
+				This not always the case and sometimes the error lies <i>above</i> the indicated error line.<br/>
+				Programatical errors are harder to find, such as objects rotating the wrong way,or the position is out, and you will need to interrogate the program by asking it to print out the variable values<br/>
+				by using the print() statement.<br/>
+				The results are displayed in a box below the main output window.
+			</p> 
+			<P>&nbsp;</P><P>&nbsp;</P><P>&nbsp;</P><P>&nbsp;</P>
+
+	<details class="exercise">
+			<summary class="exercise_summary">Exercise 3</summary>
+				<p class="normal">Copy and paste<span class="program"> box(color=color.red),</span> in your program editor</p>
+					Run this program you will see a canvas containing an error box. <br/>
+			
+				<p>	Read the error and see how it relates to the program. Can you see how to fix it?</p>
+		</details> 
+		<details class="solution">
+			<summary class="solution_summary">Solution</summary>
+				<p class="normal">
+					Error: Unexpected token: punc «,» at line 6: box(color=color.red),<br/> 
+					VPython is telling us it does not expect a comma after the final bracket on line 6<br/>
+					Remove the comma and the program will run.
+				</p>
+		</details> 
+	
+			  
+        <h3 class="heading2"> Printing results</h3>
+        <p class="normal"> To print a number, a vector, a list, or anything else,
+          use the &quot;print&quot; option:</p>
+        <p class="normal"> print(Europa.momentum)</p>
+        <p class="normal"> To print a text message, enclose it in quotes:</p>
+        <p class="normal"> print(&quot;We   crashed with speed&quot;, v, &quot;m/s.&quot;)</p>
+        <p class="normal"> This could also be done like this (note the initial &quot;f&quot; that makes this work):</p>
+        <p class="normal"> print(f&quot;We   crashed with speed {v} m/s.&quot;)</p>
+		  
+		  <h3 class="heading2">Vectors </h3>
+        <p class="normal"></p>
+        <p class="normal"><span class="normal">Not all objects in VPython are visible objects. For example, 
+          VPython allows you to create 3D vector quantities, and to perform vector 
+          operations on them. If you create a vector quantity called <strong>a</strong>, 
+          you may refer to its components as <strong>a.x</strong><em class="code">,  </em><strong>a.y</strong>, and <strong> a.z</strong>.<br />
+			To add two vectors, <strong> a</strong> and <strong> b</strong>, however, you do not need to add the 
+      		components one by one; VPython will do the vector addition for you:</span>
+		</p>
+          <iframe src="https://www.glowscript.org/#/user/pmh/folder/Public/program/vectors" title="description" align="right" style='width:320px;height:300px'>Figure 3</iframe> 
+        <p class="normal"> a = vector(1,2,3) # can also be written briefly as vec(1,2,3)<br />
+        b = vector(4,5,6)<br />
+        c = a+b</p>
+        <p class="normal"> If you include print(c), you will see that 
+          
+          it is a vector with components &lt;5, 7, 9&gt;.</p>
+        <h3 class="heading2">Scalar multiplication</h3>
+        <p class="normal">d = 3*a # d is a vector with components &lt;3, 6, 9&gt;</p>
+
+          <h3 class="heading2">Vector magnitude </h3>
+          <p class="normal">s = mag(c) &nbsp;&nbsp;&nbsp;# s is a scalar magnitude<br />
+          z = mag(c)**2 # square the magnitude of the vector; ** means &quot;to the power of&quot;</p>
+
+          <h3 class="heading2">Vector products </h3>
+          <p class="normal">f = cross(a,b) # cross product<br />
+          g = dot(a,b)&nbsp;&nbsp;			# dot product<br />
+          h = norm(a) &nbsp;&nbsp;&nbsp;# normalized (unit) vector; a/mag(a); same as hat(a) or a.hat</p>
+          <p class="normal"> The attributes of VPython objects can be vectors, such 
+            
+            as velocity or momentum.</p>
+
+        <h3 class="heading_1"> III. Simple Python Programming</h3>
+
+
+          <h3 class="heading2">Comments</h3>
+        <p class="normal"> A comment in a Python program starts with &quot;#&quot;</p>
+        <p class="normal"> # This line is a comment</p>
+        <p class="normal"> '''This line is a<br/>
+			multiline comment<br/>
+			'''
+		</p>
+        <h3 class="heading2">Variables</h3>
+
+        <p class="normal"> Variables can be created anywhere in a Python program, simply by assigning a variable name to a value.<br>
+			The type of the variable is determined by the assignment statement.</p>
+        <p class="normal"> a = 3 &nbsp;# an integer<br />
+        b = -2.4 &nbsp;# a floating-point number<br />
+        c = vector(0.4, 3e3, -1e1) # a vector<br />
+        Earth = sphere(pos=vector(0,0,0), radius=6.4e6) # a 3D object<br />
+        bodies = [ship, Earth, Moon] &nbsp;# a list of objects</p>
+        mycar={'make':'Nissan','model':'Micra','engine':1.2}  # a dictionary
+	<p class="normal"> Basic VPython objects such as sphere() and box() have
+          a set  
+          of &quot;attributes&quot; such as color, and you can define additional attributes
+          such  as mass or velocity.<br/>
+			Other objects, such as vector(), have built-in
+          attributes but you cannot create additional attributes.      </p>
+
+		  <h3 class="heading2">Exponentiation</h3>
+
+        <p class="normal"> x**2 # Not x^2, which is a bit operation in Python</p>
+
+        <h3 class="heading2"> Logical Tests</h3>
+        <p class="normal">Logical tests like <strong><em>if...else</em></strong> or loops like <strong><em>for x in y and while True<</em></strong> must end in a colon and the next line is indented<br /></p>
+        <p class="normal"> 
+          if a == b:&nbsp;&nbsp;&nbsp;# note the double equal sign for &quot;is equal&quot;<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;c = 5 &nbsp;&nbsp;&nbsp;# executed if a is equal to b<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;d = 5*a&nbsp;&nbsp;# also executed if a is equal to b<br />
+					elif a &gt; 10: # a not equal to b but greater than 10<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;x = a+b<br />
+			else:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# any other case<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;x = b/a </p>
+        <h3 class="heading2">Logical expressions</h3>
+        <table border="1">
+          <tr>
+            <td rowspan="1" colspan="1"><p class="normal"> ==</p></td>
+            <td rowspan="1" colspan="1"><p class="normal"> equal</p></td>
+          </tr>
+          <tr>
+            <td rowspan="1" colspan="1"><p class="normal"> !=</p></td>
+            <td rowspan="1" colspan="1"><p class="normal"> not equal</p></td>
+          </tr>
+          <tr>
+            <td rowspan="1" colspan="1"><p class="normal"> &lt;</p></td>
+            <td rowspan="1" colspan="1"><p class="normal"> less than</p></td>
+          </tr>
+          <tr>
+            <td rowspan="1" colspan="1"><p class="normal"> &gt; </p></td>
+            <td rowspan="1" colspan="1"><p class="normal"> greater than</p></td>
+          </tr>
+          <tr>
+            <td rowspan="1" colspan="1"><p class="normal"> &lt;=</p></td>
+            <td rowspan="1" colspan="1"><p class="normal"> less than or equal </p></td>
+          </tr>
+          <tr>
+            <td rowspan="1" colspan="1"><p class="normal"> &gt;=</p></td>
+            <td rowspan="1" colspan="1"><p class="normal"> greater or equal</p></td>
+          </tr>
+          <tr>
+            <td rowspan="1" colspan="1"><p class="normal"> or</p></td>
+            <td rowspan="1" colspan="1"><p class="normal"> logical or</p></td>
+          </tr>
+          <tr>
+            <td rowspan="1" colspan="1"><p class="normal"> and</p></td>
+            <td rowspan="1" colspan="1"><p class="normal"> logical and</p></td>
+          </tr>
+          <tr>
+            <td rowspan="1" colspan="1"><p class="normal"> in</p></td>
+            <td rowspan="1" colspan="1"><p class="normal"> member of a sequence</p></td>
+          </tr>
+          <tr>
+            <td rowspan="1" colspan="1"><p class="normal"> not in</p></td>
+            <td rowspan="1" colspan="1"><p class="normal"> not sequence member</p></td>
+          </tr>
+        </table>
+
+        <h3 class="heading2">Lists</h3>
+        <p class="normal"> A list is an ordered sequence of any kind of object. It is delimited by square[] brackets.</p>
+        <p class="normal"> moons = [Io, Europa, Ganymede, Callisto]</p>
+        <p class="normal"> The function &quot;arange&quot; (short for &quot;arrayrange&quot;)
+           creates an array of numbers:</p>
+        <p class="normal"> angles = arange (0, 2*pi, pi/100) <br />
+        # from 0 to 2*pi-(pi/100) in steps of (pi/100)<br />
+        <br />
+        numbers = arange(5)<br />
+        for i in numbers:<br />
+		&nbsp;&nbsp;&nbsp;&nbsp;print(i) # prints 0, 1, 2, 3, 4</p>
+	
+        <h3 class="heading2">Dictionaries</h3>
+        <p class="normal"> A dictionary is an ordered sequence of any kind of object, in key:value pairs<br/>
+			. It is delimited by culry{} brackets.</p>
+        <p class="normal"> mycars={'mycar':'Nissan','dream_car':'Bugatti'} # a dictionary </p>
+        <p class="normal">
+			for key in mycars:<br/>
+			&nbsp;value=mycars[key]<br/>
+			&nbsp;print(key+':'+value+'\n') <br/>
+			# prints 'mycar':Nissan<br/>
+			dream_car:Bugatti</p>
+
+
+        <h3 class="heading2"> Loops</h3>
+        <p class="normal"> The simplest loop in Python is a &quot;while&quot; loop. The loop continues as long as the specified logical expression is true (note the obligatory indentation):</p>
+        <p class="normal"> while x &lt; 23:<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;x = x + vx*dt</p>
+        <p class="normal"> To write an infinite loop, just use a logical expression that will always be true:</p>
+        <p class="normal"> while True:<br />
+		&nbsp;&nbsp;&nbsp;&nbsp;rate(30) # limit animation rate, render scene at 30 frames per second (fps)<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;ball.pos = ball.pos + (ball.momentum/ball.mass)*dt</p>
+        <p class="normal"> Infinite loops are ok, because you can always interrupt the program by clicking &quot;Edit this program&quot;.<br/>
+		  However, you <strong><em>MUST</em></strong> include a rate statement in the animation loop.</p>
+        <p class="normal"> It is also possible to loop over the members of a sequence:<br />
+        <p class="normal"> moons = [Io, Europa, Ganymede, Callisto]<br />
+        for a in moons:<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;r = a.pos - Jupiter.pos<br />
+        &nbsp; <br />
+        for x in arange(10):<br />
+        # see &quot;lists&quot; above<br />
+        ...<br />
+        &nbsp; <br />
+        for theta in arange(0., 2.*pi, pi/100.): <br />
+        # see &quot;lists&quot; above</p>
+        You can restart a loop, or terminate the loop prematurely:</p>
+        <p class="normal">if a == b: continue # go back to the start of the loop<br />
+        if a &gt; b: break &nbsp;&nbsp;&nbsp;&nbsp;# exit the loop</p>
+
+		<details class="exercise">	
+			 <summary class="exercise_summary">Exercise 4</summary>
+				<p>Use the <b>for..in: </b> loop to work through a list of 5 planets,<br/>
+					and the <b>if statement</b> to append " my favourite!" to the output in a print statement<br>
+			</p>
+		</details> 
+
+		<p>
+				<details class="solution">	
+					 <summary class="solution_summary">Solution to Exercise 4</summary>
+						<p class="normal">
+							planets=['Mercury','Venus','Earth','Mars','Jupiter']<br/>
+							string_to_print="My planets: \n"<br/><br/>
+
+							for p in planets:<br/>
+							&nbsp;if p=='Earth':<br/>
+							&nbsp;&nbsp;string_to_print += p + " my favourite!\n"<br/>
+							&nbsp;else:<br/>
+							&nbsp;&nbsp;string_to_print+=p+"\n"<br/><br/>
+
+							print(string_to_print) <br/>
+						</p>
+				</details> 
+		</p>
+	
+	  <h3 class="heading2">Programming techniques </h3>
+
+	  <p class="normal">
+		When learning coding there are a few basic techniques for avoiding errors and keeping track of things<br/>
+		</p> 
+		<ul>
+			<li> Use plenty of comments in the code by using the # mark or triple quotes '''...''' to describe a variable or section of code</li>
+			<li> Make variable names describe roughly what they do: this makes them easier to locate in the editor</li>
+			<li> When developing a program try to avoid writing over code: instead 'mask off' the section with a hash or quotes. When it all works you can always remove them</li>
+			<li> Give vectors a name like 'center=vector(0,0,0)' or mycolor=vector(0.4,0.6,1.0). This is particularly useful for positional vectors</li>
+			<li> Change small sections of code at a time,save, and test, so you can build up the complexity slowly</li>
+			<li> Print out troublesome object values using the print() statement</li>
+			<li> Typos are very common and annoying. Where possible copy and paste sections of code to avoid mistakes.</li>
+			<li> Keep at it! Errors and debugging are normal and not to be feared: understanding them makes you better at coding.</li>
+		</ul>
+			  
+-      <h3 class="heading2">Conclusion</h3>
+        <p class="normal">This concludes the introduction to VPython</p>
+        <p class="normal">You should now be able to:<br/>
+		Create a simple shape in the graphical output screen.<br/>
+		Understand the 3-D space in VPython and move around the scene with the mouse.<br/>
+		Be familiar with the error box in VPython and understand what it means to help debug code.<br/>
+		Have a basic understanding of the various objects within VPython.<br/>
+		Be able to create variables and lists, and use the conditional and looping statements to perform logical tests.<br/>
+		Use the print() statement to ouput to the screen the values of variables.<br/>
+		</p> 
+	
+    <button onclick="javascript:document.location='file:///home/paul/coding-for-art/coding-for-art2.html'">Next Tutorial</button>
+</div>
+
+</body>
+</html>

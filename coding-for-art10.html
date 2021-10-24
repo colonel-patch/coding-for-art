@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Coding fo Art</title>
+
+	<meta charset="UTF-8">
+	<meta name="keywords" content="HTML, CSS, JavaScript">
+
+	<meta name="description" content="Coding for Art">
+
+	<meta name="author" content="Paul Heaton">
+
+	<!-- <meta http-equiv="refresh" content="60">  -->
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- <link relative="stylesheet" href="coding-for-art.css"/> -->
+	
+	<style>
+		.heading_1{
+			color:navy;
+		}
+
+		.heading_2{
+			color:blue;
+		}
+
+		.heading_3{
+			color:navy;
+		}
+
+		.normal{
+
+		}
+
+		.program{
+			background-color:lightgray;
+			padding:16px;
+			border=10px;
+		}
+		
+		.exercise{
+			background-color:ivory;
+			padding:0px;
+
+		}
+
+
+		.solution{
+			background-color:ivory;
+			padding:0px;
+			
+		}
+
+		.exercise_summary{
+			background-color:lightgreen;
+			padding:16px;
+			border=1px;
+		}
+
+		.details_inner{
+			border=1px;
+
+		}
+		.solution_summary{
+			background-color:salmon;
+			padding:16px;
+			border=1px;
+		}
+	</style>
+</head>
+
+<body>
+	
+<h1 class="heading_1">Coding for Art</h1>
+<div id="content">
+		
+		<h2 class="heading_1">Lesson 10 - Events and Objects</h2>
+		
+		<p>In this lesson we look at mouse and keyboard events and how they can interact with objects.<br/>
+
+		
+
+		<h2 class="heading_1">Objectives</h2>
+		<p>By the end of the lesson the student should be able to:<br/>
+			&nbsp;Understand how to bind an event to an object<br/>
+			&nbsp;Produce motion or other effects in response to a keyboard or mouse event.<br/>
+			&nbsp;Write functions to respond to the events<br/>
+			&nbsp;How to control the visibility of objects<br/>
+			&nbsp;How to use a global variable to change an object.<br/>
+		</p>
+
+		<h3 class="heading2"> <font color="#0000A0">The program</font></h3>
+		<iframe src="https://www.glowscript.org/#/user/pmh/folder/Public/program/events-and-objects" title="Figure 1: Events and Objects" align="right" style='width:500px;height:400px'></iframe> 
+		
+		<p class="normal">
+			To fully use the example, and see the effect of pressing the arrow keys, run the program from your own editor<br/>
+			[the webpage here  overides key presses in the example window]<br/>
+		</p>
+		<p class="program" >
+			scene.width = 800<br/>
+			scene.height = 600<br/>
+			scene.title="Events and Objects"<br/>
+			scene.range = 20<br/><br/>
+
+			center=vec(0,0,0)<br/>
+			aball = sphere(pos=center,color=color.cyan)<br/>
+			dv = 0.2<br/><br/>
+
+
+			def get_key_event(ev):<br/><br/>
+			&nbsp;global dv,center  # state we are using global variable dv<br/>
+			&nbsp;k = keysdown() # a list of keys that are down<br/>
+			&nbsp;if 'left' in k: aball.pos.x -= dv<br/>
+			&nbsp;if 'right' in k: aball.pos.x += dv<br/>
+			&nbsp;if 'down' in k: aball.pos.y -= dv<br/>
+			&nbsp;if 'up' in k: aball.pos.y += dv<br/><br/>
+
+			def get_mouse_event(ev):<br/><br/>
+
+			&nbsp;obj_under_mouse= None<br/>
+			&nbsp;obj_under_mouse=scene.mouse.pick<br/>
+			&nbsp;if obj_under_mouse!=None:<br/>
+			&nbsp;&nbsp;if(obj_under_mouse==aball):<br/>
+			&nbsp;&nbsp;&nbsp;aball.color=color.red<br/>
+			
+			&nbsp;else:<br/>
+			&nbsp;&nbsp;aball.color=color.cyan<br/>
+
+
+			scene.bind('keydown',get_key_event)<br/>
+			scene.bind('mousedown',get_mouse_event)<br/><br/>
+			scene.waitfor('mousedown mouseup keydown keyup ')<br/>
+		</p>
+	
+        <h3 class="heading2"> <font color="#0000A0">Things to note</font></h3>
+        <p class="normal">
+
+			The last line of the program asks the scene to wait for the specified events.<br/>
+			Above the last line ask to fire the specified event when a mouse is clicked or key pressed.<br/>
+			Above the binds, a function is defined to match the event bind statement for each event.<br/>
+			
+		</p>
+		
+
+		<p>&nbsp;</p>
+	<p>&nbsp;</p>
+		<details class="exercise">	
+			 <summary class="exercise_summary">Exercise 1</summary>
+				<p>
+					Copy the program above and do the following:<br/>
+					Modify the program to make the cyan shere change to  a cube when the user presses'shift' and the letter 'c' together.<br>
+					And change back to a sphere when the user presses'shift' and the letter 'b' together.<br>
+					Hint: Create the red cube and make it invisible. Use a global variable active_object to hold the box or ball.<br><br/>
+					
+					Note; An object has to be visible before one can assign an attribute like position.
+				</p>
+
+		</details> 
+
+
+		<p>
+				<details class="solution">	
+					 <summary class="solution_summary">Solution to Exercise 1</summary>
+						<p class="normal">
+							scene.width = 800<br/>
+							scene.height = 600<br/>
+							scene.title="Events and Objects"<br/>
+							scene.range = 20<br/><br/>
+
+							center=vec(0,0,0)<br/>
+							aball = sphere(pos=center,color=color.cyan)<br/>
+							abox=box(pos=center,color=color.red, size=vector(2,2,2), visible=False) # add a box and make invisible<br/>
+							active_object=aball # seet the active object to the ball<br/>
+							dv = 0.2<br/><br/>
+
+
+							def get_key_event(ev):<br/><br/>
+							&nbsp;global active_object,center,dv #use global variables above<br/>
+							&nbsp;k = keysdown() # a list of keys that are down<br/>
+							&nbsp;if 'left' in k: active_object.pos.x -= dv<br/>
+							&nbsp;if 'right' in k: active_object.pos.x += dv<br/>
+							&nbsp;if 'down' in k: active_object.pos.y -= dv<br/>
+							&nbsp;if 'up' in k: active_object.pos.y += dv<br/><br/>
+							
+							&nbsp;if 'shift' in k and 'C' in k :  # box solution<br/>
+							&nbsp;&nbsp;center=aball.pos  <br/>
+							&nbsp;&nbsp;active_object=abox<br/>
+							&nbsp;&nbsp;abox.visible=True<br/>
+							&nbsp;&nbsp;active_object.pos=center<br/>
+							&nbsp;&nbsp;aball.visible=False<br/>
+							&nbsp;&nbsp;<br/><br/>
+							&nbsp;if 'shift' in k and 'B' in k :  # ball solution<br/>
+							&nbsp;&nbsp;center=abox.pos  <br/>
+							&nbsp;&nbsp;active_object=aball<br/>
+							&nbsp;&nbsp;aball.visible=True<br/>
+							&nbsp;&nbsp;active_object.pos=center<br/>
+							&nbsp;&nbsp;abox.visible=False<br/><br/>
+							
+							def get_mouse_event(ev):<br/><br/>
+
+							&nbsp;obj_under_mouse= None<br/>
+							&nbsp;obj_under_mouse=scene.mouse.pick<br/>
+							&nbsp;if obj_under_mouse!=None:<br/>
+							&nbsp;&nbsp;if(obj_under_mouse==active_object):<br/>
+							&nbsp;&nbsp;&nbsp;active_object.color=color.red<br/><br/>
+
+							&nbsp;else:<br/>
+							&nbsp;&nbsp;active_object.color=color.cyan<br/>
+
+
+							scene.bind('keydown',get_key_event)<br/>
+							scene.bind('mousedown',get_mouse_event)<br/><br>
+							
+							scene.waitfor('mousedown mouseup keydown keyup ')<br/>
+						</p>
+					
+				</details>
+			
+			
+-      <h3 class="heading2"><font color="#0000A0">Conclusion</font></h3>
+        <p class="normal">You should now be able to:<br/>
+			&nbsp;Understand how to bind an event to an object<br/>
+			&nbsp;Produce motion or other effects in response to a keyboard or mouse event.<br/>
+			&nbsp;Write functions to respond to the events<br/>
+			&nbsp;How to control the visibility of objects<br/>
+			&nbsp;How to use a global variable to change an object.<br/>
+		</p> 
+	
+<button onclick="javascript:document.location='file:///home/paul/coding-for-art/coding-for-art9.html'">Previous Tutorial</button>
+<button onclick="javascript:document.location='file:///home/paul/coding-for-art/coding-for-art11.html'">Next Tutorial</button>
+</div>
+
+</body>
+</html>

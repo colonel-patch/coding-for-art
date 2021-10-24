@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Coding fo Art</title>
+
+	<meta charset="UTF-8">
+	<meta name="keywords" content="HTML, CSS, JavaScript">
+
+	<meta name="description" content="Coding for Art">
+
+	<meta name="author" content="Paul Heaton">
+
+	<!-- <meta http-equiv="refresh" content="60">  -->
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- <link relative="stylesheet" href="coding-for-art.css"/> -->
+	
+	<style>
+		.heading_1{
+			color:navy;
+		}
+
+		.heading_2{
+			color:blue;
+		}
+
+		.heading_3{
+			color:navy;
+		}
+
+		.normal{
+
+		}
+
+		.program{
+			background-color:lightgray;
+			padding:16px;
+			border=10px;
+		}
+		
+		.exercise{
+			background-color:ivory;
+			padding:0px;
+
+		}
+
+
+		.solution{
+			background-color:ivory;
+			padding:0px;
+			
+		}
+
+		.exercise_summary{
+			background-color:lightgreen;
+			padding:16px;
+			border=1px;
+		}
+
+		.details_inner{
+			border=1px;
+
+		}
+		.solution_summary{
+			background-color:salmon;
+			padding:16px;
+			border=1px;
+		}
+	</style>
+</head>
+
+<body>
+	
+<h1 class="heading_1">Coding for Art</h1>
+<div id="content">
+		
+		<h2 class="heading_1">Lesson 11 - Extrusions</h2>
+		
+		<p>In this lesson .<br/>
+		</p>
+		
+
+		<h2 class="heading_1">Objectives</h2>
+		<p>By the end of the lesson the student should be able to:<br/>
+			&nbsp;Understand how to create an extruded shape<br/>
+			&nbsp;Add a variety of shapes to the extrusion and position them.<br/>
+			&nbsp;Extrude a shape in a particular 'path' shape to produce a variety of objects.<br/>
+			Position the final extrusion in the scene.
+		</p>
+
+		<h3 class="heading2"> <font color="#0000A0">The program</font></h3>
+		<iframe src="https://www.glowscript.org/#/user/pmh/folder/Public/program/extrusions1" title="Figure 1: extrusions1" align="right" style='width:500px;height:400px'></iframe> 
+
+		<p class="program" >
+			scene.width=800<br/>
+			scene.height=600<br/>
+			scene.background = color.gray(0.8)<br/>
+			scene.forward = vec(0,0,-0.2)<br/>
+			scene.range = 4<br/><br/>
+
+			scene.title="Figure 1 - Extrusions"<br/><br/>
+			
+			E1start=vec(0,0,0.7)<br/>
+			E1end=vec(0,0,-0.7)<br/>
+
+			main_shape=shapes.rectangle(width=10, height=6)<br/>
+			hexagon=shapes.hexagon(pos=[-2,1], length=1.2)<br/>
+			triangle=shapes.triangle(pos=[0,-1.6], length=1.2)<br/>
+			trapezoid=shapes.trapezoid(pos=[3,0.6], width=1.6, height=1, top=0.6 )<br/>
+			circle=shapes.circle(pos=[-2,-1.6],radius=1)<br/><br/>
+
+			E1 = extrusion(path=[E1start, E1end], texture=textures.wood_old,<br/>
+			&nbsp;shape=[ main_shape,<br/>
+			&nbsp;&nbsp;&nbsp;hexagon,<br/>
+			&nbsp;&nbsp;&nbsp;triangle,<br/>
+			&nbsp;&nbsp;&nbsp;trapezoid,<br/>
+			&nbsp;&nbsp;&nbsp;circle]<br/>
+			&nbsp;&nbsp;&nbsp;)<br/><br/>
+
+			E1.pos= vector(0,0,0)<br/>
+		</p>
+	
+			
+		<h3 class="heading2"> <font color="#0000A0">Things to note</font></h3>
+		<p class="normal">In the above example we specify the start and end positions of the extrusion: note we are extruding in the 'z' axis.<br/>
+			Next we spcify that the main shape should be a rectangle, and a series of other 2-D shapes which leave the 'holes' in the main object<br/>
+			We perform the extrusion by giving it the previously defined shapes: note the first shape in the 'shape[] list is the shape the others are extruded into<br/>
+			Lastly the erusion is given its final position.<br/><br/>
+			
+			If shapes overlap of fall outside of the main shape, VPython will issue an error screen with an outline of where the problem shape is occurring.<br/>
+			The program will run when all the shapes lie within the main shape and none of them intersect!<br/>
+		</p>
+		
+
+		<p>&nbsp;</p>
+	<p>&nbsp;</p>
+		<details class="exercise">	
+			 <summary class="exercise_summary">Exercise 1</summary>
+				<p>
+					Copy the program above and do the following:<br/>
+					Create a pentagon in the 'wood' and place it below the trapezoid.<br>
+					Inrease the depth of the extrusion by 1 unit in the z axis<br><br/>
+					
+					If you go wrong you will see the error screen mentioned above: return to the editor and try new  values.
+				</p>
+
+		</details> 
+
+
+		<p>
+				<details class="solution">	
+					 <summary class="solution_summary">Solution to Exercise 1</summary>
+						<p class="normal">
+							scene.width=800<br/>
+							scene.height=600<br/>
+							scene.background = color.gray(0.8)<br/>
+							scene.forward = vec(0,0,-0.2)<br/>
+							scene.range = 4<br/><br/>
+
+							scene.title="Figure 1 - Extrusions"<br/><br/>
+
+							E1start=vec(0,0,0.7)<br/>
+							E1end=vec(0,0,-1.7)<br/>
+
+							main_shape=shapes.rectangle(width=10, height=6)<br/>
+							hexagon=shapes.hexagon(pos=[-2,1], length=1.2)<br/>
+							triangle=shapes.triangle(pos=[0,-1.6], length=1.2)<br/>
+							trapezoid=shapes.trapezoid(pos=[3,0.6], width=1.6, height=1, top=0.6 )<br/>
+							pentagon = shapes.pentagon(pos=[3,-1.6],length=5) #solution<br>
+							circle=shapes.circle(pos=[-2,-1.6],radius=1)<br/><br/>
+
+							E1 = extrusion(path=[E1start, E1end], texture=textures.wood_old,<br/>
+							&nbsp;shape=[ main_shape,<br/>
+							&nbsp;&nbsp;&nbsp;hexagon,<br/>
+							&nbsp;&nbsp;&nbsp;triangle,<br/>
+							&nbsp;&nbsp;&nbsp;trapezoid,<br/>
+							&nbsp;&nbsp;&nbsp;pentagon,   #solution<br/>
+							&nbsp;&nbsp;&nbsp;circle])<br/>
+							
+							E1.pos= vector(0,0,0)<br/>
+						</p>
+					
+				</details>
+			
+			
+		<h2 class="heading_1">Extrusions in a curve</h2>
+ 		<iframe src="https://www.glowscript.org/#/user/pmh/folder/Public/program/extrusions2" title="Figure 2: extrusions2" align="right" style='width:500px;height:400px'>Figure 2</iframe> 
+		
+		
+		<p class="program" >
+			scene.width=800<br/>
+			scene.height=600<br/>
+			scene.background = color.gray(0.8)<br/>
+			scene.forward = vec(0,0,-0.2)<br/>
+			scene.range = 4<br/><br/>
+
+			scene.title="Figure 2 - Extrusions in a curve"<br/><br/>
+
+			copper = vec(0.722,0.451,0.200)
+			E2 = extrusion(path=paths.arc(radius=1.7, angle2=pi), texture=textures.metal,<br/> 
+			&nbsp;shape=[ [shapes.triangle(length=2),<br/>
+			&nbsp;shapes.circle(pos=[0,.5], radius=0.2),<br/>
+			&nbsp;shapes.trapezoid(pos=[0,-0.2],<br/>
+			&nbsp;width=0.6, height=0.4)]],<br/>
+			&nbsp;start_face_color=copper, end_face_color=copper)<br/><br/>
+
+
+			E2.pos=vector(0,0,0)<br/>
+			E2center = E2.pos    # initial pos of center of extrusion<br/><br/>
+
+			E2rot = E2.pos+vec(0,0,-E2center.z) # a location at the front of the extrusion<br/><br/>
+			
+		</p>
+			
+		<h3 class="heading2"> <font color="#0000A0">Things to note</font></h3>
+		<p class="normal">.<br/>
+		All of the following shapes have path versions: paths.rectangle(), paths.circle(), paths.ellipse(), paths.arc(), 
+			paths.line(), paths.triangle(), paths.pentagon(), paths.hexagon(), paths.octagon(), paths.ngon(), paths.star(), and paths.cross(). <br/>
+			In the example we use paths.arcradius=1.7, angle2=pi) to give a rounded shape to the extrusion, but we could use any of the above.
+		</p>
+		<p>&nbsp;</p>
+	
+		<details class="exercise">	
+			 <summary class="exercise_summary">Exercise 2</summary>
+				<p>
+					Copy the program above and do the following:<br/>
+					Modify the program to make an extrusion with using the 'star' shape with n=10. A ten sided star (star(n=10).<br>
+					Note: A star is a closed shape unlike an arc, so the start-fave and end-face attributes are not required..<br>
+					
+					.
+				</p>
+
+		</details> 
+
+
+		<p>
+				<details class="solution">	
+					 <summary class="solution_summary">Solution to Exercise 2</summary>
+						<p class="normal">
+							scene.width=800<br/>
+							scene.height=600<br/>
+							scene.background = color.gray(0.8)<br/>
+							scene.forward = vec(0,0,-0.2)<br/>
+							scene.range = 4<br/><br/>
+
+							scene.title="Figure 2 - Extrusions in a curve"<br/><br/>
+
+							copper = vec(0.722,0.451,0.200)
+							E2 = extrusion(path=paths.star(n=10), texture=textures.metal,<br/> 
+							&nbsp;shape=[ [shapes.cross(width=2, thickness=0.2),<br/>
+							&nbsp;shapes.circle(pos=[0,.5], radius=0.2),<br/>
+							&nbsp;shapes.trapezoid(pos=[0,-0.2],<br/>
+							&nbsp;width=0.6, height=0.4)]],<br/>
+							)<br/><br/>
+
+
+							E2.pos=vector(0,0,0)<br/>
+							E2center = E2.pos    # initial pos of center of extrusion<br/><br/>
+
+							E2rot = E2.pos+vec(0,0,-E2center.z) # a location at the front of the extrusion<br/><br/>
+						</p>
+					
+				</details>
+-      <h3 class="heading2"><font color="#0000A0">Conclusion</font></h3>
+        <p class="normal">You should now be able to:<br/>
+			&nbsp;Understand how to create an extruded shape<br/>
+			&nbsp;Add a variety of shapes to the extrusion and position them.<br/>
+			&nbsp;Extrude a shape in a particular 'path' shape to produce a variety of objects.<br/>
+			Position the final extrusion in the scene.
+		</p> 
+	
+<button onclick="javascript:document.location='file:///home/paul/coding-for-art/coding-for-art10.html'">Previous Tutorial</button>
+<button onclick="javascript:document.location='file:///home/paul/coding-for-art/coding-for-art12.html'">Next Tutorial</button>
+</div>
+
+</body>
+</html>

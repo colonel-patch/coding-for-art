@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Coding fo Art</title>
+
+	<meta charset="UTF-8">
+	<meta name="keywords" content="HTML, CSS, JavaScript">
+
+	<meta name="description" content="Coding for Art">
+
+	<meta name="author" content="Paul Heaton">
+
+	<!-- <meta http-equiv="refresh" content="60">  -->
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- <link relative="stylesheet" href="coding-for-art.css"/> -->
+	
+	<style>
+		.heading_1{
+			color:navy;
+		}
+
+		.heading_2{
+			color:blue;
+		}
+
+		.heading_3{
+			color:navy;
+		}
+
+		.normal{
+
+		}
+
+		.program{
+			background-color:lightgray;
+			padding:16px;
+			border=10px;
+		}
+		
+		.exercise{
+			background-color:ivory;
+			padding:0px;
+
+		}
+
+
+		.solution{
+			background-color:ivory;
+			padding:0px;
+			
+		}
+
+		.exercise_summary{
+			background-color:lightgreen;
+			padding:16px;
+			border=1px;
+		}
+
+		.details_inner{
+			border=1px;
+
+		}
+		.solution_summary{
+			background-color:salmon;
+			padding:16px;
+			border=1px;
+		}
+	</style>
+</head>
+
+<body>
+	
+<h1 class="heading_1">Coding for Art</h1>
+<div id="content">
+		<h2 class="heading_1">Lesson 9 - Events</h2>
+		
+		<p>In this lesson we look at mouse and keyboard events and how VPython reports them.<br/>
+
+		<p>Glowscript VPython can detect many mouse and keyboard events:<br/>
+			mousedown<br/>
+			mouseup<br/>
+			mouseclick<br/>
+			mouseleave<br/>
+			mouseenter<br/>
+			mousemove<br/> <br/>
+			keydown<br/>
+			keyup<br/>
+			keypress<br/><br/><br/>
+			<em>There is currently no way in GlowScript to handle right button or middle button events.</em>
+		</p>
+		
+
+		<h2 class="heading_1">Objectives</h2>
+		<p>By the end of the lesson the student should be able to:<br/>
+			&nbsp; Understand how to detect keyboard and mouse events.<br/>
+			&nbsp;Understand how to bind a function to and event<br/>
+			&nbsp;Understand how to bind an event to an object<br/>
+			&nbsp;How to look for multiple keys being down.
+		</p>
+
+		<h3 class="heading2"> <font color="#0000A0">The program</font></h3>
+		<iframe src="https://www.glowscript.org/#/user/pmh/folder/Public/program/events" title="Figure 1: Events" align="right" style='width:500px;height:400px'>Figure 2</iframe> 
+		
+
+		<p class="program" >
+			scene.width = 800<br/>
+			scene.height = 600<br/>
+			scene.center = vector(0,0,0)<br/>
+			scene.userspin = True<br/>
+			scene.userzoom = True<br/>
+			scene.background = color.gray(0.5)<br/>
+			scene.ambient = color.gray(0.4)<br/><br/>
+
+			scene.title="Figure 1: Events"<br/><br/>
+
+			txt = label(pos=vector(0,6,0), text='No keys pressed', align='center',height=36, color=color.green)<br/>
+			txt2 = label(pos=vector(0,-3,0), text='Nothing pressed', align='center',height=36, color=color.green)<br/><br/>
+
+			def getevent(ev):<br/>
+			&nbsp;k = keysdown() # a list of keys that are down<br/><br/>
+
+			&nbsp;if ev.event == 'mousedown':<br/>
+			&nbsp;&nbsp;txt.text='You mousedowned at\n' + ev.pos<br/>
+			&nbsp;&nbsp;txt.color=color.yellow  <br/>
+			&nbsp;else if ev.event == 'mouseup':<br/>
+			&nbsp;&nbsp;txt.text='Nothing clicked'<br/>
+			&nbsp;&nbsp;txt.color=color.red<br/>
+			&nbsp;&nbsp;txt2.text='You are holding down\n'  + k<br/>
+			&nbsp;else if ev.event == 'keydown':<br/>
+			&nbsp;&nbsp;txt.text='You pressed\n' + ev.key<br/>
+			&nbsp;&nbsp;txt.color=color.red<br/>
+			&nbsp;&nbsp;txt2.text='You are holding down\n'  + k<br/>
+			&nbsp;else if  ev.event == 'keyup':<br/>
+			&nbsp;&nbsp;txt.text='No keys pressed'<br/>
+			&nbsp;&nbsp;txt2.text='Nothing pressed'<br/>
+			&nbsp;&nbsp;txt2.color=color.green<br/>
+
+			scene.bind("mousedown", getevent)<br/>
+			scene.bind("mouseup", getevent)<br/>
+			scene.bind("keydown", getevent)<br/>
+			scene.bind("keyup", getevent)<br/><br/>
+
+			scene.waitfor('mousedown mouseup keydown keyup ')<br/>
+		</p>
+	
+        <h3 class="heading2"> <font color="#0000A0">Things to note</font></h3>
+        <p class="normal">The last line of the program asks the scene to wait for the specified events.<br/>
+			A function 'getevent()ev)' is defined and it is 'bound to the event by the scene.bind() method.<br/>
+			Now when the scene is clicked or a key is pressed, the 'getevent' function is fired. When it is fired it passes the event data to the function via the 'ev' variable.<br/>
+			VPython keeps track of which keys are down using the 'keysdown() function, which returns a list of all the keys which are pressed.<br/>
+			The 'getevent' function then filters the event recieved and alters the text in the label accordingly.<br/>
+			The 'ev' variable in 'getevent' is user defined. For example it could be 'e' or 'evt' or 'zxpw'! But will contain the event data.<br/>
+			When an event is fired the variable holds all the event data. Here we use ev.event and ev.key, but there are more, such as ev.type, ev.ctrl,ev.shift,ev.alt and ev.which.<br/>
+			Note:Keys with multiletter names are 'backspace', 'caps lock', 'tab', 'shift', 'ctrl', 'alt', 'pageup', 'pagedown', 'end', 'home', 'left', 'up', 'right', 'down', 'insert', 'delete', 'break', and the function keys 'f1' through 'f10'
+		</p>
+		
+
+		<p>&nbsp;</p>
+	<p>&nbsp;</p>
+		<details class="exercise">	
+			 <summary class="exercise_summary">Exercise 1</summary>
+				<p>
+					Copy the program above and do the following:<br/>
+					Modify the program to make the word' HELLO!' appear in the bottom label in magenta, when the user presses 'ctrl'+ 'alt' + shift.<br>
+					.
+				</p>
+
+		</details> 
+
+
+		<p>
+				<details class="solution">	
+					 <summary class="solution_summary">Solution to Exercise 1</summary>
+						<p class="normal">
+							scene.width = 800<br/>
+							scene.height = 600<br/>
+							scene.center = vector(0,0,0)<br/>
+							scene.userspin = True<br/>
+							scene.userzoom = True<br/>
+							scene.background = color.gray(0.5)<br/>
+							scene.ambient = color.gray(0.4)<br/><br/>
+
+							scene.title="Figure 1: Events"<br/><br/>
+
+							txt = label(pos=vector(0,6,0), text='No keys pressed', align='center',height=36, color=color.green)<br/>
+							txt2 = label(pos=vector(0,-3,0), text='Nothing pressed', align='center',height=36, color=color.green)<br/><br/>
+
+							def getevent(ev):<br/>
+							&nbsp;k = keysdown() # a list of keys that are down<br/><br/>
+
+							&nbsp;if ev.event == 'mousedown':<br/>
+							&nbsp;&nbsp;txt.text='You mousedowned at\n' + ev.pos<br/>
+							&nbsp;&nbsp;txt.color=color.yellow  <br/>
+							&nbsp;else if ev.event == 'mouseup':<br/>
+							&nbsp;&nbsp;txt.text='Nothing clicked'<br/>
+							&nbsp;&nbsp;txt.color=color.red<br/>
+							&nbsp;&nbsp;txt2.text='You are holding down\n'  + k<br/><br/>
+							
+							&nbsp;else if ev.event == 'keydown':<br/>
+							&nbsp;&nbsp;txt.text='You pressed\n' + ev.key<br/>
+							&nbsp;&nbsp;txt.color=color.red<br/>
+							        
+							&nbsp;&nbsp;if'ctrl' in k and 'alt' in k and 'shift' in k: # solution<br/>
+							&nbsp;&nbsp;&nbsp;txt2.text='HELLO!'<br/>
+							&nbsp;&nbsp;&nbsp;txt2.color=color.magenta  <br/>
+							&nbsp;&nbsp;else:<br/>
+							&nbsp;&nbsp;&nbsp;txt2.text='You are holding down\n'  + k<br/>
+							&nbsp;else if  ev.event == 'keyup':<br/>
+							&nbsp;&nbsp;txt.text='No keys pressed'<br/>
+							&nbsp;&nbsp;txt2.text='Nothing pressed'<br/>
+							&nbsp;&nbsp;txt2.color=color.green<br/>
+
+							scene.bind("mousedown", getevent)<br/>
+							scene.bind("mouseup", getevent)<br/>
+							scene.bind("keydown", getevent)<br/>
+							scene.bind("keyup", getevent)<br/><br/>
+
+							scene.waitfor('mousedown mouseup keydown keyup ')<br/>
+						</p>
+					
+				</details>
+			
+			
+-      <h3 class="heading2"><font color="#0000A0">Conclusion</font></h3>
+        <p class="normal">You should now be able to:<br/>
+			&nbsp; Understand how to detect keyboard and mouse events.<br/>
+			&nbsp;Understand how to bind a function to and event<br/>
+			&nbsp;Understand how to bind an event to an object<br/>
+			&nbsp;How to look for multiple keys being down.
+		</p> 
+	
+<button onclick="javascript:document.location='file:///home/paul/coding-for-art/coding-for-art8.html'">Previous Tutorial</button>
+<button onclick="javascript:document.location='file:///home/paul/coding-for-art/coding-for-art10.html'">Next Tutorial</button>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Coding fo Art</title>
+
+	<meta charset="UTF-8">
+	<meta name="keywords" content="HTML, CSS, JavaScript">
+
+	<meta name="description" content="Coding for Art">
+
+	<meta name="author" content="Paul Heaton">
+
+	<!-- <meta http-equiv="refresh" content="60">  -->
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- <link relative="stylesheet" href="coding-for-art.css"/> -->
+	
+	<style>
+		.heading_1{
+			color:navy;
+		}
+
+		.heading_2{
+			color:blue;
+		}
+
+		.heading_3{
+			color:navy;
+		}
+
+		.normal{
+
+		}
+
+		.program{
+			background-color:lightgray;
+			padding:16px;
+			border=10px;
+		}
+		
+		.exercise{
+			background-color:ivory;
+			padding:0px;
+
+		}
+
+
+		.solution{
+			background-color:ivory;
+			padding:0px;
+			
+		}
+
+		.exercise_summary{
+			background-color:lightgreen;
+			padding:16px;
+			border=1px;
+		}
+
+		.details_inner{
+			border=1px;
+
+		}
+		.solution_summary{
+			background-color:salmon;
+			padding:16px;
+			border=1px;
+		}
+	</style>
+</head>
+
+<body>
+	
+<h1 class="heading_1">Coding for Art</h1>
+<div id="content">
+		
+		<h2 class="heading_1">Lesson 8 - Textures</h2>
+		
+		<p>In this lesson we look at textures.<br/>
+			VPython comes with several bulit-in textures to use to create a variety of effects. See:<br>
+			<a href="" target="blank"> </a> and <a href="" target="blank"> </a> on the Glowscript site for examples.</p>
+		<p>VPython has four settings for applying a position to a texture on an object:<br/>
+			left<br/>
+			right<br/>
+			sides<br/>
+			 and all.<br/> <br/>
+
+			'left' and 'right' take their cue from the initial x direction, and 'sides' represent the remaining sides of the shape.<br/>
+
+			So 'place'=[left,right,sides] is the same as 'all'.<br/><br/>
+
+
+			So what about just the top or bottom?<br/>
+
+			The answer is to pick a side and tell the shape where the axis is (normally in th x direction)<br/>
+
+			To get the texture on the top we assign the place as 'right' and change the axis to be in the y direction.<br/>
+
+			Remember angles are measured anticlockwise from the x vector. This automatically makes the texture appear on top,<br/>
+
+			rather than having to rotate the object 90 degrees.<br/>
+
+		</p>
+		
+
+		<h2 class="heading_1">Objectives</h2>
+		<p>By  the end of the lesson the student should be able to:<br/>
+			&nbsp; Understand how to add a texture to an object in a specified place.<br/>
+			&nbsp;Understand how to rotate the base object so that the texture appears in the correct orientation.
+		</p>
+
+		<h3 class="heading2"> <font color="#0000A0">The program</font></h3>
+		<iframe src="https://www.glowscript.org/#/user/pmh/folder/Public/program/textures" title="Figure 1: Textures" align="right" style='width:320px;height:300px'></iframe> 
+
+		<p class="program" >
+			scene.width = 800<br/>
+			scene.height = 600<br/>
+			scene.range = 6<br/>
+			scene.center = vector(0,0,0)<br/>
+			scene.userspin = True<br/>
+			scene.userzoom = True<br/>
+			scene.background = color.gray(0.3)<br/>
+			scene.ambient = color.gray(0.7)<br/>
+			scene.title='Figure 1 Textures'<br/><br/>
+
+			arrow_origin=vector(-4,-1,2)<br/><br/>
+
+			box( color=color.green, pos=vector(-2,0,0),<br/>
+			&nbsp; texture={'file':textures.earth, 'place':['left','right']} )<br/><br/>
+
+			box( color=color.cyan, pos=vector(0,0,0), axis=vector(0,1,0),<br/>
+			&nbsp;texture={'file':textures.stones, 'place':'right'} )<br/><br/>
+
+			box( color=color.yellow, pos=vector(2,0,0),<br/>
+			&nbsp; texture={'file':textures.flower, 'place':['sides']} )<br/><br/>
+
+			Bx = label(pos=vector(-1,2,0), text='place:[all]', xoffset=-0.2, yoffset=-0.1, space=0.1,  height=12, border=4, font='sans')<br/>
+			By = label(pos=vector(1,2,0), text='place:right, axis y', xoffset=-2, yoffset=-0.1, space=0.1,  height=12, border=4, font='sans')<br/>
+			Bz = label(pos=vector(3,2,0), text='place:[sides]', xoffset=-0.2, yoffset=-0.1, space=2,  height=12, border=4, font='sans')<br/><br/>
+
+			pointerx = arrow(pos=arrow_origin, axis=vector(2,0,0), shaftwidth=0.2, color=color.red)<br/>
+			pointery = arrow(pos=arrow_origin, axis=vector(0,2,0), shaftwidth=0.2, color=color.yellow)<br/>
+			pointerz = arrow(pos=arrow_origin, axis=vector(0,0,-2), shaftwidth=0.2, color=color.green)<br/><br/>
+	
+			Lx = label(pos=vector(-1.6,-1,2), text='+X Axis', xoffset=-0.2, yoffset=-0.1, space=0.1,  height=12, border=4, font='sans')<br/>
+			Ly = label(pos=vector(-4,1.2,2), text='+Y Axis', xoffset=-2, yoffset=-0.1, space=0.1,  height=12, border=4, font='sans')<br/>
+			Lz = label(pos=vector(-4,-1.2,-0.2), text='-Z Axis', xoffset=-0.2, yoffset=-0.1, space=2,  height=12, border=4, font='sans')<br/>
+
+		</p>
+	
+        <h3 class="heading2"> <font color="#0000A0">Things to note</font></h3>
+        <p class="normal">Notice the format of the texture attribute: The curly brackets{} in python denote a 'dictionary'..<br/>
+			A dictionary is like a list but each item is accessed by a 'keyword' instead of a numerical index.<br/>
+			'place' takes a 'list' of one or more items and is enclosed in square brackets[]..<br/>
+			The cyan box has texture top and bottom, because we tell the box its axis is in the 'y' direction; by default it is in the 'x'..<br/>
+			The net effect is the same as drawing a box with sides left and right then rotating 90 degrees.
+		</p>
+		
+
+		<p>&nbsp;</p>
+	<p>&nbsp;</p>
+		<details class="exercise">	
+			 <summary class="exercise_summary">Exercise 1</summary>
+				<p>
+					Copy the program below and do the following:<br/>
+					Modify the program below to make the cyan box have the stones texture on the back.<br>
+					Modify the program below to make the yellow box have the flower texture only on the sides ie top top and bottom are blank.<br>
+					Modify the program below to make the green box a sphere so that the earth texture looks like planet Earth.
+					.
+				</p>
+
+		</details> 
+
+
+		<p>
+				<details class="solution">	
+					 <summary class="solution_summary">Solution to Exercise 1</summary>
+						<p class="normal">
+							scene.width = 800<br/>
+							scene.height = 600<br/>
+							scene.range = 6<br/>
+							scene.center = vector(0,0,0)<br/>
+							scene.userspin = True<br/>
+							scene.userzoom = True<br/>
+							scene.background = color.gray(0.3)<br/>
+							scene.ambient = color.gray(0.7)<br/>
+							scene.title='Figure 1 Textures'<br/><br/>
+
+							arrow_origin=vector(-4,-1,2)<br/><br/>
+
+							box( color=color.green, pos=vector(-2,0,0),<br/>
+							&nbsp; texture={'file':textures.earth, 'place':['all']} )<br/><br/>
+
+							box( color=color.cyan, pos=vector(0,0,0), axis=vector(0,1,0),<br/>
+							&nbsp;texture={'file':textures.stones, 'place':'right'} )<br/><br/>
+
+							box( color=color.yellow, pos=vector(2,0,0),<br/>
+							&nbsp; texture={'file':textures.flower, 'place':['sides']} )<br/><br/>
+
+							Bx = label(pos=vector(-1,2,0), text='place:[all]', xoffset=-0.2, yoffset=-0.1, space=0.1,  height=12, border=4, font='sans')<br/>
+							By = label(pos=vector(1,2,0), text='place:right\n axis y', xoffset=-2, yoffset=-0.1, space=0.1,  height=12, border=4, font='sans')<br/>
+							Bz = label(pos=vector(3,2,0), text='place:[sides]', xoffset=-0.2, yoffset=-0.1, space=2,  height=12, border=4, font='sans')<br/><br/>
+
+							pointerx = arrow(pos=arrow_origin, axis=vector(2,0,0), shaftwidth=0.2, color=color.red)<br/>
+							pointery = arrow(pos=arrow_origin, axis=vector(0,2,0), shaftwidth=0.2, color=color.yellow)<br/>
+							pointerz = arrow(pos=arrow_origin, axis=vector(0,0,-2), shaftwidth=0.2, color=color.green)<br/><br/>
+
+							Lx = label(pos=vector(-1.6,-1,2), text='+X Axis', xoffset=-0.2, yoffset=-0.1, space=0.1,  height=12, border=4, font='sans')<br/>
+							Ly = label(pos=vector(-4,1.2,2), text='+Y Axis', xoffset=-2, yoffset=-0.1, space=0.1,  height=12, border=4, font='sans')<br/>
+							Lz = label(pos=vector(-4,-1.2,-0.2), text='-Z Axis', xoffset=-0.2, yoffset=-0.1, space=2,  height=12, border=4, font='sans')<br/>
+						</p>
+					
+				</details>
+			
+			
+-      <h3 class="heading2"><font color="#0000A0">Conclusion</font></h3>
+        <p class="normal">You should now be able to:<br/>
+			&nbsp; Understand how to add a texture to an object in a specified place.<br/>
+			&nbsp;Understand how to rotate the an object, by setting its axis, so that the texture appears in the correct orientation.
+		</p> 
+	
+<button onclick="javascript:document.location='file:///home/paul/coding-for-art/coding-for-art7.html'">Previous Tutorial</button>
+<button onclick="javascript:document.location='file:///home/paul/coding-for-art/coding-for-art9.html'">Next Tutorial</button>
+</div>
+
+</body>
+</html>

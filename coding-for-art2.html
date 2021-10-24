@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Coding fo Art</title>
+
+	<meta charset="UTF-8">
+	<meta name="keywords" content="HTML, CSS, JavaScript">
+
+	<meta name="description" content="Coding for Art">
+
+	<meta name="author" content="Paul Heaton">
+
+	<!-- <meta http-equiv="refresh" content="60">  -->
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- <link relative="stylesheet" href="coding-for-art.css"/> -->
+	
+	<style>
+		.heading_1{
+			color:navy;
+		}
+
+		.heading_2{
+			color:blue;
+		}
+
+		.heading_3{
+			color:navy;
+		}
+
+		.normal{
+
+		}
+
+		.program{
+			background-color:lightgray;
+			padding:16px;
+			border=10px;
+		}
+		
+		.exercise{
+			background-color:ivory;
+			padding:0px;
+
+		}
+
+
+		.solution{
+			background-color:ivory;
+			padding:0px;
+			
+		}
+
+		.exercise_summary{
+			background-color:lightgreen;
+			padding:16px;
+			border=1px;
+		}
+
+		.details_inner{
+			border=1px;
+
+		}
+		.solution_summary{
+			background-color:salmon;
+			padding:16px;
+			border=1px;
+		}
+	</style>
+</head>
+
+<body>
+	
+<h1 class="heading_1">Coding for Art</h1>
+<div id="content">
+		<h2 class="heading_1">Lesson 2 - Setting the Scene </h2>
+		<p>The scene object controls the view of the 3-D world and controls the lighting of it.<br/>
+		Here we look at the some of the commonly used settings which set the initial conditions when the user runs  the program. <p>
+
+		<h2 class="heading_1">Objectives</h2>
+		<p>By  the end of the lesson the student should be able to:.<br/>
+			&nbsp; Set up  a scene to display a program with a customised title and caption.<br/>
+			&nbsp; Set up  a scene to control the initial view the user sees of the program objects.<br/>
+		</p>
+
+		<iframe src="https://www.glowscript.org/#/user/pmh/folder/Public/program/setting-the-scene" title="Figure 1:Setting the Scene" align="right" style='width:320px;height:300px'>Figure 2</iframe> 
+        <h3 class="heading2"> <font color="#0000A0">Scene properties</font></h3>
+
+			<p class="normal">scene.width = 300 &nbsp;&nbsp;<strong>Sets the width of the scene window in pixels</strong><br/>
+			<p class="normal">scene.height = 300  &nbsp;&nbsp;<strong>Sets the height of the scene window in pixels</strong><br/>
+			<p class="normal">scene.range = 3 &nbsp;&nbsp;<strong>Sets the viewing width of the scene window in relative units</strong><br/>
+			<p class="normal">scene.fov = 30 &nbsp;&nbsp;<strong>Sets the 'field of view' that camera can see.An angle in radians. Small angles give a 2-D effect.</strong><br/>
+			<p class="normal">scene.center = vector(0,0,0) &nbsp;&nbsp;<strong>Sets where the center of the scene is (normally the middle)</strong><br/>
+			<p class="normal">scene.forward = vector(1,1,1) &nbsp;&nbsp;<strong>Sets the angle at which the camera is pointing (default is minus Z), into screen</strong><br/>
+			<p class="normal">scene.userspin = True &nbsp;&nbsp;<strong>Sets whether the user can use mouse keys to rotate the scene</strong><br/>
+			<p class="normal">scene.userzoom = True &nbsp;&nbsp;<strong>Sets whether the user can use mouse keys to zoom in and out</strong><br/>
+			<p class="normal">scene.background = color.gray(0.9) &nbsp;&nbsp;<strong>Sets background color as a shade of gray: zero=black, 1=white</strong><br/>
+			<p class="normal">scene.ambient = color.gray(0.4) &nbsp;&nbsp;<strong>Sets ambient lighting strength: zero=dark, 1=bright</strong><br/>
+			<p class="normal">scene.title="Exercise 1 - Setting the Scene" &nbsp;&nbsp;<strong>Sets the scene title above the ouput window</strong><br/>
+			<p class="normal">scene.caption = """Figure 1 - Viewing at an angle""" &nbsp;&nbsp;<strong>Sets caption text below the output window</strong><br/>
+			
+			<p class="program">
+				scene.width = 800<br/>
+				scene.height = 800<br/>
+				scene.resizable = True <br/>
+				scene.range = 3<br/>
+				scene.fov = pi/2 #angle in radians. Small angles give a 2-D effect.<br/>
+				scene.center = vector(0,0,0)<br/>
+				scene.forward = vector(1,1,1)<br/>
+				scene.userspin = True<br/>
+				scene.userzoom = True<br/>
+				scene.background = color.gray(0.9)<br/>
+				scene.ambient = color.gray(0.7)<br/>
+				scene.title="<b>Exercise 1 - Setting the Scene</b>"<br/>
+				scene.caption = """<br/>
+				Figure 1 - Viewing at an angle<br/>
+				"""<br/>
+				center=vector(0,0,0)<br/>
+				b = box(pos=center, size=vector(2,2,2), color=color.blue)<br/>
+				v=arrow(pos=vec(0,2.2,-2),axis=scene.forward,length=3, shaftwidth=0.2, color=color.red, round=True)<br/>
+
+				&nbsp;
+			</p>
+	
+		<h3 class="heading2"> <font color="#0000A0">Things to note</font></h3>
+		<p class="normal"> Background and ambient light are limited to shades of gray, and the function color.gray() must be used to set it.</p>
+		<p class="normal"> In figure 1 an arrow is added to help 'see' the viewing angle.</p>
+		<p>&nbsp;</p>
+		<details class="exercise">	
+			 <summary class="exercise_summary">Exercise 1</summary>
+				<p>Copy the program above and change the values of background, ambient, range, userspin,userzoom, and range<br/>
+					to get a feel for what these setting do.</p>
+
+			
+		</details> 
+
+
+
+-      <h3 class="heading2"><font color="#0000A0">Conclusion</font></h3>
+        <p class="normal">You should now be able to:<br/>
+		Understand more about the 3-D space inside scene and change the scene settings to give a desired effect.<br/>
+		Modify the output window to present a program with a title and some information about the program in the caption.
+		</p> 
+	
+<button onclick="javascript:document.location='file:///home/paul/coding-for-art/coding-for-art1.html'">Previous Tutorial</button>
+<button onclick="javascript:document.location='file:///home/paul/coding-for-art/coding-for-art3.html'">Next Tutorial</button>
+</div>
+
+</body>
+</html>

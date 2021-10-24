@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Coding fo Art</title>
+
+	<meta charset="UTF-8">
+	<meta name="keywords" content="HTML, CSS, JavaScript">
+
+	<meta name="description" content="Coding for Art">
+
+	<meta name="author" content="Paul Heaton">
+
+	<!-- <meta http-equiv="refresh" content="60">  -->
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- <link relative="stylesheet" href="coding-for-art.css"/> -->
+	
+	<style>
+		.heading_1{
+			color:navy;
+		}
+
+		.heading_2{
+			color:blue;
+		}
+
+		.heading_3{
+			color:navy;
+		}
+
+		.normal{
+
+		}
+
+		.program{
+			background-color:lightgray;
+			padding:16px;
+			border=10px;
+		}
+		
+		.exercise{
+			background-color:ivory;
+			padding:0px;
+
+		}
+
+
+		.solution{
+			background-color:ivory;
+			padding:0px;
+			
+		}
+
+		.exercise_summary{
+			background-color:lightgreen;
+			padding:16px;
+			border=1px;
+		}
+
+		.details_inner{
+			border=1px;
+
+		}
+		.solution_summary{
+			background-color:salmon;
+			padding:16px;
+			border=1px;
+		}
+	</style>
+</head>
+
+<body>
+	
+<h1 class="heading_1">Coding for Art</h1>
+<div id="content">
+		
+		<h2 class="heading_1">Lesson 5 - Orbital Motion </h2>
+		
+		<p>In this lesson we look at how to move an object in an orbit around a point.<br/>
+		
+
+		<h2 class="heading_1">Objectives</h2>
+		<p>By  the end of the lesson the student should be able to:<br/>
+			&nbsp; Understand how to move an object in an orbital motion.<br/>
+		</p>
+
+		<h3 class="heading2"> <font color="#0000A0">The program</font></h3>
+		<iframe src="https://glowscript.org/#/user/pmh/folder/Public/program/orbital-motion" title="Figure 1:Orbital Motion" align="right" style='width:320px;height:300px'>Figure 2</iframe> 
+		
+		<p class="program" >
+		scene.width = 800<br/>
+		scene.height = 600<br/>
+
+
+		scene.title="Orbital motion"<br/><br/>
+
+		center=vector(0,0,0) # center of screen<br/>
+		ballpos=vector(4,0,0) # ball offset 4 units in the x direction from center<br/>
+		orbit_radius=ballpos.x # the orbit radius is thus ball_pos.x<br/>
+		ballangle = 0.005*pi # angle in radians through which to increment<br/>
+
+		# Boxes are used here so one can see any rotation<br/>
+		center_box = box(pos=center, size=vector(0.1, 0.1, 0.1), color=color.red)<br/>
+
+		ball = box(pos=ballpos,  size=vector(1.5, 1, 1), color=color.yellow,<br/>
+						make_trail=True, interval=10, retain=5)<br/><br/>
+
+
+		while True:<br/>
+		&nbsp;rate(100)<br/><br/>
+
+		&nbsp;ball.rotate(angle=ballangle, axis=vector(0,1,0), origin=center)# code for orbit
+
+		</p>
+	
+        <h3 class="heading2"> <font color="#0000A0">Things to note</font></h3>
+        <p class="normal">Orbital Motion .<br>
+			Orbital motion is achieved using the 'rotate' built in method.<br/>
+			The angle attribute must be in radians.<br/>
+			Introduction of the degrees function for converting degrees to radians<br/>
+			The complimentary function to this is radians() to convert radians to degrees
+			
+		</p>
+		
+
+		<p>&nbsp;</p>
+	<p>&nbsp;</p>
+		<details class="exercise">	
+			 <summary class="exercise_summary">Exercise 1</summary>
+				<p>
+					Copy the program below and do the following:<br/>
+					Change the code so that the orbiting yellow cube spins on it's own axis as well as orbiting the red cube.<br/>
+					Change the code so that the orbiting cube changes between cyan and yellow every 10 degrees of swept angle<br/>
+				</p>
+
+		</details> 
+
+
+		<p>
+				<details class="solution">	
+					 <summary class="solution_summary">Solution to Exercise 1</summary>
+						<p class="normal">
+				scene.width = 800<br/>
+				scene.height = 600<br/>
+				scene.title="Exercise4: Orbital Motion"<br/><br/>
+				
+				center=vector(0,0,0) <br/>
+				ballpos=vector(4,0,0)<br/>
+				orbit_radius=ballpos.x<br/>
+				ballangle = 0.005*pi<br/>
+				swept_angle=0 # In radians<br/>
+
+				center_box = box(pos=center, size=vector(0.1, 0.1, 0.1), color=color.red)<br/>
+
+				ball = box(pos=ballpos,  size=vector(1.5, 1, 1), color=color.yellow)<br/><br/>
+
+
+				while True:<br/>
+				&nbsp;rate(100)<br/><br/>
+					
+				&nbsp;ball.rotate(angle=ballangle, axis=vector(0,1,0), origin=center)# code for orbit<br/>
+				&nbsp;ball.rotate(angle=ballangle, axis=vector(0,0,1), origin=ball.pos) #code for spin<br/>
+				&nbsp;if degrees(swept_angle) >10:<br>
+				&nbsp;&nbsp;ball.color=color.cyan<br>
+				&nbsp;else:<br>
+				&nbsp;&nbsp;ball.color=color.yellow<br>
+				&nbsp;swept_angle=swept_angle+ballangle<br>
+				&nbsp;if degrees(swept_angle)>20: swept_angle=0<br></p>
+					
+				</details>
+			
+			
+-      <h3 class="heading2"><font color="#0000A0">Conclusion</font></h3>
+        <p class="normal">You should now be able to:<br/>
+			&nbsp; Understand how to move an object in an orbital motion about a reference point.<br/>
+			&nbsp; Make an object spin on it's own axis by setting the rotation to be the center of that object.
+		</p> 
+	
+<button onclick="javascript:document.location='file:///home/paul/coding-for-art/coding-for-art4.html'">Previous Tutorial</button>
+<button onclick="javascript:document.location='file:///home/paul/coding-for-art/coding-for-art6.html'">Next Tutorial</button>
+</div>
+
+</body>
+</html>
