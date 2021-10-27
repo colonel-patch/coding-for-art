@@ -77,7 +77,7 @@
 		
 		<h2 class="heading_1">Lesson 11 - Extrusions</h2>
 		
-		<p>In this lesson we learm about extrusions. Extrusions are similar to forcing plastercene or plastic through a mould.<br/>
+		<p>In this lesson we learn about extrusions. Extrusions are similar to forcing plasticene or plastic through a mould.<br/>
 			A basic shape is defined and any 'holes' within it, then the shape is 'extruded' along a path.
 		</p>
 		
@@ -119,7 +119,7 @@
 			&nbsp;&nbsp;&nbsp;circle]<br/>
 			&nbsp;&nbsp;&nbsp;)<br/><br/>
 
-			E1.pos= vector(0,0,0)<br/>
+			E1.pos= vector(0,0,-3)<br/>
 		</p>
 	
 			
@@ -127,7 +127,7 @@
 		<p class="normal">In the above example we specify the start and end positions of the extrusion: note we are extruding in the 'z' axis.<br/>
 			Next we spcify that the main shape should be a rectangle, and a series of other 2-D shapes which leave the 'holes' in the main object<br/>
 			We perform the extrusion by giving it the previously defined shapes: note the first shape in the 'shape[] list is the shape the others are extruded into<br/>
-			Lastly the erusion is given its final position.<br/><br/>
+			Lastly the extrusion is given its final position. Here it is moved back 3 units im the -z direction<br/><br/>
 			
 			If shapes overlap of fall outside of the main shape, VPython will issue an error screen with an outline of where the problem shape is occurring.<br/>
 			The program will run when all the shapes lie within the main shape and none of them intersect!<br/>
@@ -179,7 +179,7 @@
 							&nbsp;&nbsp;&nbsp;pentagon,   #solution<br/>
 							&nbsp;&nbsp;&nbsp;circle])<br/>
 							
-							E1.pos= vector(0,0,0)<br/>
+							E1.pos= vector(0,0,-3)<br/>
 						</p>
 					
 				</details>
@@ -226,8 +226,8 @@
 			 <summary class="exercise_summary">Exercise 2</summary>
 				<p>
 					Copy the program above and do the following:<br/>
-					Modify the program to make an extrusion with using the 'star' shape with n=10. A ten sided star (star(n=10).<br>
-					Note: A star is a closed shape unlike an arc, so the start-fave and end-face attributes are not required..<br>
+					Modify the program to make an extrusion with using the 'star' shape with n=10. A ten sided star -star(n=10).<br>
+					Note: A star is a closed shape unlike an arc, so the start-face and end-face attributes are not required..<br>
 					
 					.
 				</p>
