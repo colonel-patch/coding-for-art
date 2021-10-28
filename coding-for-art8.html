@@ -154,7 +154,13 @@
 			A dictionary is like a list but each item is accessed by a 'keyword' instead of a numerical index.<br/>
 			'place' takes a 'list' of one or more items and is enclosed in square brackets[]..<br/>
 			The cyan box has texture top and bottom, because we tell the box its axis is in the 'y' direction; by default it is in the 'x'..<br/>
-			The net effect is the same as drawing a box with sides left and right then rotating 90 degrees.
+			The net effect is the same as drawing a box with sides left and right then rotating 90 degrees.<br/><br>
+			
+			As well as the built-in textures VPython allows you to add an image as a texture from any <i>publicly available</i> image source on the internet<br/>
+			by calling the texture in the form:<br/>
+			box( <em> texture={'file':"https://an-internet file-image.jpg", 'place':['all']} </em> )<br/>
+			or any other VPython object.
+
 		</p>
 		
 
@@ -166,7 +172,9 @@
 					Copy the program below and do the following:<br/>
 					Modify the program below to make the cyan box have the stones texture on the back.<br>
 					Modify the program below to make the yellow box have the flower texture only on the sides ie top top and bottom are blank.<br>
-					Modify the program below to make the green box a sphere so that the earth texture looks like planet Earth.
+					Modify the program below to make the green box a sphere so that the earth texture looks like planet Earth.<br/>
+					Modify the program below to make the yellow box show a custom texture on the sides, using this URL, from the Independent Newspaper, of someone familiar:<br/>
+					https://static.independent.co.uk/s3fs-public/thumbnails/image/2019/09/11/20/Boris-Johnson.jpg
 					.
 				</p>
 
@@ -189,14 +197,14 @@
 
 							arrow_origin=vector(-4,-1,2)<br/><br/>
 
-							box( color=color.green, pos=vector(-2,0,0),<br/>
+							sphere( color=color.white, pos=vector(-2,0,0),<br/>
 							&nbsp; texture={'file':textures.earth, 'place':['all']} )<br/><br/>
 
 							box( color=color.cyan, pos=vector(0,0,0), axis=vector(0,1,0),<br/>
 							&nbsp;texture={'file':textures.stones, 'place':'right'} )<br/><br/>
 
 							box( color=color.yellow, pos=vector(2,0,0),<br/>
-							&nbsp; texture={'file':textures.flower, 'place':['sides']} )<br/><br/>
+							&nbsp;texture={'file':"https://static.independent.co.uk/s3fs-public/thumbnails/image/2019/09/11/20/Boris-Johnson.jpg", 'place':['sides']} ) <br/><br/>
 
 							Bx = label(pos=vector(-1,2,0), text='place:[all]', xoffset=-0.2, yoffset=-0.1, space=0.1,  height=12, border=4, font='sans')<br/>
 							By = label(pos=vector(1,2,0), text='place:right\n axis y', xoffset=-2, yoffset=-0.1, space=0.1,  height=12, border=4, font='sans')<br/>
